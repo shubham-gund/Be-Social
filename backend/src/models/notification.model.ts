@@ -1,26 +1,39 @@
-import mongoose from "mongoose";
+import { Schema, model, Document } from 'mongoose';
 
-const notificationSchema = new mongoose.Schema({
-  from:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"User",
-    required:true
+interface INotification extends Document {
+  from: Schema.Types.ObjectId;
+  to: Schema.Types.ObjectId;
+  type: 'follow' | 'like';
+  post?: Schema.Types.ObjectId;
+  read?: boolean;
+}
+
+const notificationSchema = new Schema<INotification>({
+  from: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true
   },
-  to:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"User",
-    required:true
+  to: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true
   },
-  type:{
-    type:String,
-    required:true,
-    enum:['follow','like']
+  type: {
+    type: String,
+    required: true,
+    enum: ['follow', 'like']
   },
-  read:{
-    type:Boolean,
-    default:false
+  post: {
+    type: Schema.Types.ObjectId,
+    ref: "Post",
+    required: function() { return (this as INotification).type === 'like'; }
+  },
+  read: {
+    type: Boolean,
+    default: false
   }
-},{timestamps:true})
+}, { timestamps: true });
 
-const Notification = mongoose.model('Notification',notificationSchema) 
+const Notification = model<INotification>('Notification', notificationSchema);
 export default Notification;

@@ -76,41 +76,49 @@ export const commentOnPost = async (req:Request,res:Response)=>{
   }
 }
 
-export const likeUnlikePost = async (req:Request,res:Response)=>{
+export const likeUnlikePost = async (req: Request, res: Response) => {
   try {
     const userId = req.user._id;
-    const {id:postId} = req.params;
-  
-    const post = await Post.findById(postId);
-    if(!post) return res.status(404).json({error:"Post not found"})
+    const { id: postId } = req.params;
 
-    if(post.likes.includes(userId)){
-        //unlike post 
-      await Post.updateOne({_id:postId},{$pull:{likes:userId}})
-      await User.updateOne({_id:userId},{$pull:{likedPosts:postId}})
-      res.status(200).json({message:"Post unliked"});
-    }else{
-        //liked
+    const post = await Post.findById(postId);
+    if (!post) return res.status(404).json({ error: "Post not found" });
+
+    if (post.likes.includes(userId)) {
+      // Unlike post 
+      await Post.updateOne({ _id: postId }, { $pull: { likes: userId } });
+      await User.updateOne({ _id: userId }, { $pull: { likedPosts: postId } });
+
+      // Delete notification
+      await Notification.deleteOne({
+        from: userId,
+        to: post.user,
+        type: "like",
+        post: postId
+      });
+
+      res.status(200).json({ message: "Post unliked" });
+    } else {
+      // Like post
       post.likes.push(userId);
-      await User.updateOne({_id:userId},{$push:{likedPosts:postId}})
+      await User.updateOne({ _id: userId }, { $push: { likedPosts: postId } });
       await post.save();
 
-      const notification= new Notification({
-        from:userId,
-        to:post.user,
-        type:"like"
-      })
+      const notification = new Notification({
+        from: userId,
+        to: post.user,
+        type: "like",
+        post: postId
+      });
       await notification.save();
 
-      res.status(200).json({
-        message:"Post Liked successfully"
-      })
+      res.status(200).json({ message: "Post liked successfully" });
     }
   } catch (error) {
-      console.log("error in likeUnlikePost route",error);
-      return res.status(500).json({error:"Internal server error"});
+    console.log("error in likeUnlikePost route", error);
+    return res.status(500).json({ error: "Internal server error" });
   }
-}
+};
 
 export const getAllPosts = async (req:Request,res:Response)=>{
   try {
