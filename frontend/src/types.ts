@@ -1,5 +1,6 @@
 // types.ts
 export interface UserType {
+  _id: string;
   username: string;
   profileImg: string;
   fullName: string;
