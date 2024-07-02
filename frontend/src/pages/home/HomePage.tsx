@@ -3,8 +3,10 @@ import { useState } from "react";
 import Posts from "../../components/common/Posts.jsx";
 import CreatePost from "./CreatePost";
 
+type FeedType = "forYou" | "following";
+
 const HomePage = () => {
-	const [feedType, setFeedType] = useState("forYou");
+	const [feedType, setFeedType] = useState<FeedType>("forYou");
 
 	return (
 		<>
@@ -37,7 +39,7 @@ const HomePage = () => {
 				<CreatePost />
 
 				{/* POSTS */}
-				<Posts />
+				<Posts feedType={feedType}/>
 			</div>
 		</>
 	);

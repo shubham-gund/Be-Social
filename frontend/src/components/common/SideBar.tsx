@@ -102,10 +102,10 @@ const Sidebar: FC = () => {
 						<div className='flex justify-between flex-1'>
 							<div className='hidden md:block'>
 								<p className='text-white font-bold text-sm w-20 truncate'>{authUser.fullName}</p>
-								<p className='text-slate-500 text-sm'>@{authUser.username}</p>
+								<p className='text-slate-500 w-20 truncate text-xs'>@{authUser.username}</p>
 							</div>
 							<BiLogOut
-								className='w-5 h-5 cursor-pointer'
+								className='w-6 h-6 cursor-pointer'
 								onClick={(e) => {
 									e.preventDefault();
 									logout();
