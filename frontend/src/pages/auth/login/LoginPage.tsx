@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Link } from "react-router-dom";
 
-import XSvg from "../../../components/svgs/X";
+import XSvg from "../../../components/svgs/Logo";
 
 import { MdOutlineMail, MdPassword } from "react-icons/md";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

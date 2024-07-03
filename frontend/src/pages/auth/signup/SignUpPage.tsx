@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ChangeEvent, FormEvent, useState } from "react";
 
-import XSvg from "../../../components/svgs/X";
+import XSvg from "../../../components/svgs/Logo";
 
 import { MdOutlineMail } from "react-icons/md";
 import { FaRegEye, FaRegEyeSlash, FaUser } from "react-icons/fa";

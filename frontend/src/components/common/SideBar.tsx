@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import XSvg from "../svgs/X";
+import XSvg from "../svgs/Logo";
 
 import { MdHomeFilled } from "react-icons/md";
 import { IoNotifications } from "react-icons/io5";
