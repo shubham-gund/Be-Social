@@ -6,6 +6,7 @@ import XSvg from "../../../components/svgs/X";
 import { MdOutlineMail, MdPassword } from "react-icons/md";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 interface FormData{
 	username: string;
@@ -17,6 +18,12 @@ const LoginPage = () => {
 		username: "",
 		password: "",
 	});
+
+	const [isShowPassword, setIsShowPassword] = useState(false);
+  const toggleShowPassword = () => {
+    setIsShowPassword(!isShowPassword);
+  };
+
 	const queryClient = useQueryClient();
 	const {mutate, isPending ,isError, error} = useMutation({
 		mutationFn:async({username,password}:FormData)=>{
@@ -75,13 +82,16 @@ const LoginPage = () => {
 					<label className='input input-bordered rounded flex items-center gap-2'>
 						<MdPassword />
 						<input
-							type='password'
+							type={isShowPassword ? "text" : "password"}
 							className='grow'
 							placeholder='Password'
 							name='password'
 							onChange={handleInputChange}
 							value={formData.password}
 						/>
+						<div onClick={toggleShowPassword} className="cursor-pointer pl-2">
+								{isShowPassword ? <FaRegEye size={22} className="text-primary" /> : <FaRegEyeSlash size={22} className="text-primary" />}
+						</div>
 					</label>
 					<button className='btn rounded-full btn-primary text-white'>{isPending ? "Loading..." : "Login"}</button>
 					{isError && <p className='text-red-500'>{error.message}</p>}

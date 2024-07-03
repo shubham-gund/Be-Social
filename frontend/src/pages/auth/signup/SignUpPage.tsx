@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import XSvg from "../../../components/svgs/X";
 
 import { MdOutlineMail } from "react-icons/md";
-import { FaUser } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash, FaUser } from "react-icons/fa";
 import { MdPassword } from "react-icons/md";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -24,6 +24,11 @@ const SignUpPage = () => {
 		fullName: "",
 		password: "",
 	});
+
+	const [isShowPassword, setIsShowPassword] = useState(false);
+  const toggleShowPassword = () => {
+    setIsShowPassword(!isShowPassword);
+  };
 
 	const queryClient = useQueryClient();
 
@@ -108,13 +113,17 @@ const SignUpPage = () => {
 					<label className='input input-bordered rounded flex items-center gap-2'>
 						<MdPassword />
 						<input
-							type='password'
+							type={isShowPassword ? "text" : "password"}
 							className='grow'
 							placeholder='Password'
 							name='password'
 							onChange={handleInputChange}
 							value={formData.password}
 						/>
+							<div onClick={toggleShowPassword} className="cursor-pointer pl-2">
+								{isShowPassword ? <FaRegEye size={22} className="text-primary" /> : <FaRegEyeSlash size={22} className="text-primary" />}
+							</div>
+
 					</label>
 					<button className='btn rounded-full btn-primary text-white'>
 						{isPending ? "Loading..." : "Sign up"}
