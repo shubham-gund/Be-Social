@@ -89,6 +89,8 @@ export const likeUnlikePost = async (req: Request, res: Response) => {
       await Post.updateOne({ _id: postId }, { $pull: { likes: userId } });
       await User.updateOne({ _id: userId }, { $pull: { likedPosts: postId } });
 
+      const updatedLikes = post.likes.filter((id)=>id.toString() !== userId.toString())
+
       // Delete notification
       await Notification.deleteOne({
         from: userId,
@@ -97,7 +99,7 @@ export const likeUnlikePost = async (req: Request, res: Response) => {
         post: postId
       });
 
-      res.status(200).json({ message: "Post unliked" });
+      res.status(200).json(updatedLikes);
     } else {
       // Like post
       post.likes.push(userId);
@@ -112,7 +114,7 @@ export const likeUnlikePost = async (req: Request, res: Response) => {
       });
       await notification.save();
 
-      res.status(200).json({ message: "Post liked successfully" });
+      res.status(200).json(post.likes);
     }
   } catch (error) {
     console.log("error in likeUnlikePost route", error);
