@@ -21,7 +21,7 @@ const Post = ({ post }: PostProps) => {
   const isLiked = authUser ? post.likes.includes(authUser._id) : false;
   const isMyPost = authUser?._id === post.user._id;
   const formattedDate = "1h";
-  const isCommenting = false;
+
   const {mutate:deletePost, isPending:isDeleting} = useMutation({
     mutationFn: async () => {
       try {
@@ -73,13 +73,38 @@ const Post = ({ post }: PostProps) => {
       toast.error(error.message);
     }
   })
+
+  const {mutate:commentPost ,isPending:isCommenting} = useMutation({
+    mutationFn:async()=>{
+      try {
+        const res = await fetch(`/api/posts/comment/${post._id}`,{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({text:comment})
+        })
+        const data = await res.json();
+        if(!res.ok){
+          throw new Error(data.message || data.error || "Something went wrong");
+        }
+        return data;
+      } catch (error:any) {
+          throw new Error (error)
+      }
+    },
+    onSuccess:()=>{
+      toast.success("Comment posted successfully!");
+      queryClient.invalidateQueries({queryKey:["posts"]})
+    }
+  })
+
   const handleDeletePost = () => {
     deletePost();
   };
 
   const handlePostComment = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implement post comment logic
+    if(isCommenting) return;
+    commentPost();
   };
 
   const handleLikePost = () => {
