@@ -3,12 +3,13 @@ import PostSkeleton from "../skeleton/PostSkeleton.js";
 import { PostType } from "../../types.js";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-
-type feedType = "forYou" | "following" 
-interface feedProps {
-	feedType: feedType;
+ 
+interface PostsProps {
+  feedType: "posts" | "likes" | "forYou" | "following" ;
+  username: string;
+  userId: string;
 }
-const Posts = ({feedType}:feedProps) => {
+const Posts:React.FC<PostsProps> = ({feedType,username, userId }) => {
 
 	const getPostEndPoint = ()=>{
 		switch(feedType){
@@ -16,6 +17,10 @@ const Posts = ({feedType}:feedProps) => {
 					return "/api/posts/all";
 			case "following" :
 					return "/api/posts/following";
+			case "posts":
+				return `/api/posts/user/${username}`;
+			case "likes":
+				return `/api/posts/likes/${userId}`;
 			default:
 					return "/api/posts/all"
 		}
