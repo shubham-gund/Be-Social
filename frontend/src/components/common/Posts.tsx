@@ -20,7 +20,7 @@ const Posts:React.FC<PostsProps> = ({feedType,username, userId }) => {
 			case "posts":
 				return `/api/posts/user/${username}`;
 			case "likes":
-				return `/api/posts/likes/${userId}`;
+				return `/api/posts/like/${userId}`;
 			default:
 					return "/api/posts/all"
 		}
@@ -45,7 +45,7 @@ const Posts:React.FC<PostsProps> = ({feedType,username, userId }) => {
 
 	useEffect(()=>{
 		refetch();
-	},[feedType,refetch])
+	},[feedType,refetch,username,])
 
 	return (
 		<>

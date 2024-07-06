@@ -12,6 +12,7 @@ import { IoCalendarOutline } from "react-icons/io5";
 import { FaLink } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
+import { formatMemberSinceDate } from "../../utils/date";
 
 const ProfilePage = () => {
   const [coverImg, setCoverImg] = useState<string | ArrayBuffer | null>(null);
@@ -36,6 +37,8 @@ const ProfilePage = () => {
       }
     }
   });
+
+  const memberSinceDate = formatMemberSinceDate (user?.createdAt);
 
   const handleImgChange = (e: React.ChangeEvent<HTMLInputElement>, state: "coverImg" | "profileImg") => {
     const file = e.target.files?.[0];
@@ -159,7 +162,7 @@ const ProfilePage = () => {
                   )}
                   <div className="flex gap-2 items-center">
                     <IoCalendarOutline className="w-4 h-4 text-slate-500" />
-                    <span className="text-sm text-slate-500">Joined July 2021</span>
+                    <span className="text-sm text-slate-500">{memberSinceDate}</span>
                   </div>
                 </div>
                 <div className="flex gap-2">

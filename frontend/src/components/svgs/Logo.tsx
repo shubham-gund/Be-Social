@@ -1,6 +1,6 @@
 const XSvg = (props:any) => (
-<svg fill="#000000"  {...props} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 viewBox="-127 175.8 256 162.2" xml:space="preserve">
+<svg fill="#000000"  {...props} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" 
+	 viewBox="-127 175.8 256 162.2" xmlSpace="preserve">
 <path d="M-9.5,192.7c4.8,6.7,7.2,14.8,7.2,24.2c0,9.6-2.4,17.4-7.3,23.3c-2.7,3.3-6.8,6.3-12.1,9c8.1,3,14.2,7.6,18.3,14
 	c4.1,6.4,6.2,14.1,6.2,23.2c0,9.4-2.3,17.8-7.1,25.2c-3,4.9-6.7,9.1-11.2,12.4c-5,3.9-11,6.5-17.9,8c-6.9,1.4-14.3,2.1-22.4,2.1
 	H-127V175.8h76.5C-31.3,176.1-17.6,181.7-9.5,192.7z M-95.5,203.3v34.9H-57c6.9,0,12.4-1.3,16.7-3.9s6.4-7.3,6.4-13.9
