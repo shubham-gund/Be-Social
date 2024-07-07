@@ -7,6 +7,7 @@ import { CommentType, PostType, UserType } from "../../types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import LoadingSpinner from "./LoadingSpinner";
+import { formatPostDate } from "../../utils/date";
 
 interface PostProps {
   post: PostType;
@@ -20,7 +21,6 @@ const Post = ({ post }: PostProps) => {
   const postOwner = post.user;
   const isLiked = authUser ? post.likes.includes(authUser._id) : false;
   const isMyPost = authUser?._id === post.user._id;
-  const formattedDate = "1h";
 
   const {mutate:deletePost, isPending:isDeleting} = useMutation({
     mutationFn: async () => {
@@ -129,7 +129,7 @@ const Post = ({ post }: PostProps) => {
             <span className="text-gray-700 flex gap-1 text-sm">
               <Link to={`/profile/${postOwner.username}`}>@{postOwner.username}</Link>
               <span>·</span>
-              <span>{formattedDate}</span>
+              <span>{formatPostDate(post.createdAt)}</span>
             </span>
             {isMyPost && (
               <span className="flex justify-end flex-1">

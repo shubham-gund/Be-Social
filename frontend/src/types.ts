@@ -26,6 +26,7 @@ export interface PostType {
   user: UserType;
   comments: CommentType[];
   likes: string[];
+  createdAt:string;
 }
 
 export interface NotificationFromType {
