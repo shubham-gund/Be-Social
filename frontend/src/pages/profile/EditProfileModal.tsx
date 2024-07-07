@@ -1,7 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { UserType } from "../../types";
+import useUpdateUserProfile from "../../hooks/useUpdateUserProfile";
 
-const EditProfileModal = () => {
-  const [formData, setFormData] = useState({
+export interface FormData {
+  fullName: string;
+  username: string;
+  email: string;
+  bio: string;
+  link: string;
+  newPassword: string;
+  currentPassword: string;
+}
+
+const EditProfileModal = ({authUser}:{authUser:UserType}) => {
+  const [formData, setFormData] = useState<FormData>({
     fullName: "",
     username: "",
     email: "",
@@ -15,12 +27,28 @@ const EditProfileModal = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const {updateProfile,isUpdating}  = useUpdateUserProfile()
+
   const showModal = () => {
     const modal = document.getElementById("edit_profile_modal") as HTMLDialogElement | null;
     if (modal) {
       modal.showModal();
     }
   };
+
+  useEffect(()=>{
+    if(authUser){
+      setFormData({
+        fullName:authUser.fullName,
+        username:authUser.username,
+        email:authUser.email,
+        bio:authUser.bio || "",
+        link:authUser.link || "",
+        newPassword:"",
+        currentPassword:"",
+      })
+    }
+  },[authUser])
 
   return (
     <>
@@ -37,7 +65,7 @@ const EditProfileModal = () => {
             className="flex flex-col gap-4"
             onSubmit={(e) => {
               e.preventDefault();
-              alert("Profile updated successfully");
+              updateProfile({formData})
             }}
           >
             <div className="flex flex-wrap gap-2">
@@ -101,7 +129,7 @@ const EditProfileModal = () => {
               name="link"
               onChange={handleInputChange}
             />
-            <button className="btn btn-primary rounded-full btn-sm text-white">Update</button>
+            <button className="btn btn-primary rounded-full btn-sm text-white">{isUpdating ? "Updating.." : "Update"}</button>
           </form>
         </div>
         <form method="dialog" className="modal-backdrop">

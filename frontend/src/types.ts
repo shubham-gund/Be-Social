@@ -3,6 +3,7 @@ export interface UserType {
   _id: string;
   fullName: string;
   username: string;
+  email:string;
   profileImg?: string;
   coverImg?: string;
   bio?: string;

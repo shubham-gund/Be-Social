@@ -1,18 +1,25 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { FormData } from "../pages/profile/EditProfileModal";
+
+interface UpdateProfileArgs {
+	formData?: FormData;
+	coverImg?: string | ArrayBuffer | null;
+	profileImg?: string | ArrayBuffer | null;
+}
 
 const useUpdateUserProfile = () => {
 	const queryClient = useQueryClient();
 
-	const { mutateAsync: updateProfile, isPending: isUpdatingProfile } = useMutation({
-		mutationFn: async (formData) => {
+	const { mutateAsync: updateProfile, isPending: isUpdating } = useMutation<any, Error, UpdateProfileArgs, void>({
+		mutationFn: async ({formData , coverImg, profileImg}:UpdateProfileArgs) => {
 			try {
 				const res = await fetch(`/api/users/update`, {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify(formData),
+					body: formData ? JSON.stringify(formData) : JSON.stringify({ coverImg, profileImg }) ,
 				});
 				const data = await res.json();
 				if (!res.ok) {
@@ -35,7 +42,7 @@ const useUpdateUserProfile = () => {
 		},
 	});
 
-	return { updateProfile, isUpdatingProfile };
+	return { updateProfile, isUpdating };
 };
 
 export default useUpdateUserProfile;
