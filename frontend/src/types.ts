@@ -1,9 +1,15 @@
 // types.ts
 export interface UserType {
   _id: string;
-  username: string;
-  profileImg: string;
   fullName: string;
+  username: string;
+  profileImg?: string;
+  coverImg?: string;
+  bio?: string;
+  link?: string;
+  following: string[];
+  followers: string[];
+  createdAt: string;
 }
 
 export interface CommentType {
