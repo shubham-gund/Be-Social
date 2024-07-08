@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "tsc -b && dist/server.js",
   "scripts": {
-    "build": "tsc -b && node dist/server.js",
+    "build": "tsc -b",
     "dev": "npm run build && nodemon dist/server.js",
     "start": "npm run build && node dist/server.js"
   },
