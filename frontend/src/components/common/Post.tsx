@@ -1,6 +1,4 @@
 import { FaRegComment, FaRegHeart, FaTrash } from "react-icons/fa";
-import { BiRepost } from "react-icons/bi";
-import { FaRegBookmark } from "react-icons/fa6";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CommentType, PostType, UserType } from "../../types";
