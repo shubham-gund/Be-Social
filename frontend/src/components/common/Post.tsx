@@ -123,13 +123,10 @@ const Post = ({ post }: PostProps) => {
         </div>
         <div className="flex flex-col flex-1">
           <div className="flex gap-2 items-center">
-            <Link to={`/profile/${postOwner.username}`} className="font-bold">
-              {postOwner.fullName}
-            </Link>
-            <span className="text-gray-700 flex gap-1 text-sm">
+            <span className="text-gray-500  flex gap-1 text-sm">
               <Link to={`/profile/${postOwner.username}`}>@{postOwner.username}</Link>
               <span>·</span>
-              <span>{formatPostDate(post.createdAt)}</span>
+              <span className="text-gray-500">{formatPostDate(post.createdAt)}</span>
             </span>
             {isMyPost && (
               <span className="flex justify-end flex-1">
@@ -153,8 +150,25 @@ const Post = ({ post }: PostProps) => {
               />
             )}
           </div>
-          <div className="flex justify-between mt-3">
-            <div className="flex gap-4 items-center w-2/3 justify-between">
+          <div className="flex justify-start mt-3 ">
+            <div className="flex gap-4 items-center w-2/3 pr-5">
+            <div className="flex gap-1 items-center group cursor-pointer sm:pr-5" onClick={handleLikePost}>
+                {isLiking && <LoadingSpinner size='sm' />}
+								{!isLiked && !isLiking && (
+									<FaRegHeart className='w-4 h-4 cursor-pointer text-slate-500 group-hover:text-pink-500' />
+								)}
+								{isLiked && !isLiking && (
+									<FaRegHeart className='w-4 h-4 cursor-pointer text-pink-500 ' />
+								)}
+                <span
+                  className={`text-sm text-slate-500 group-hover:text-pink-500 ${
+                    isLiked ? "text-pink-500" : ""
+                  }`}
+                >
+                  {post.likes.length}
+                </span>
+              </div>
+              
               <div
                 className="flex gap-1 items-center cursor-pointer group"
                 onClick={() => setIsModalOpen(true)}
@@ -186,8 +200,7 @@ const Post = ({ post }: PostProps) => {
                           </div>
                           <div className="flex flex-col">
                             <div className="flex items-center gap-1">
-                              <span className="font-bold">{comment.user.fullName}</span>
-                              <span className="text-gray-700 text-sm">
+                              <span className="text-gray-500 text-sm">
                                 @{comment.user.username}
                               </span>
                             </div>
@@ -226,29 +239,6 @@ const Post = ({ post }: PostProps) => {
                   </form>
                 </dialog>
               )}
-              <div className="flex gap-1 items-center group cursor-pointer">
-                <BiRepost className="w-6 h-6 text-slate-500 group-hover:text-green-500" />
-                <span className="text-sm text-slate-500 group-hover:text-green-500">0</span>
-              </div>
-              <div className="flex gap-1 items-center group cursor-pointer" onClick={handleLikePost}>
-                {isLiking && <LoadingSpinner size='sm' />}
-								{!isLiked && !isLiking && (
-									<FaRegHeart className='w-4 h-4 cursor-pointer text-slate-500 group-hover:text-pink-500' />
-								)}
-								{isLiked && !isLiking && (
-									<FaRegHeart className='w-4 h-4 cursor-pointer text-pink-500 ' />
-								)}
-                <span
-                  className={`text-sm text-slate-500 group-hover:text-pink-500 ${
-                    isLiked ? "text-pink-500" : ""
-                  }`}
-                >
-                  {post.likes.length}
-                </span>
-              </div>
-            </div>
-            <div className="flex w-1/3 justify-end gap-2 items-center">
-              <FaRegBookmark className="w-4 h-4 text-slate-500 cursor-pointer" />
             </div>
           </div>
         </div>
