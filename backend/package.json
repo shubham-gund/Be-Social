@@ -2,11 +2,12 @@
   "name": "twitter",
   "version": "1.0.0",
   "main": "tsc -b && dist/server.js",
-  "scripts": {
-    "build": "tsc -b",
-    "dev": "npm run build && nodemon dist/server.js",
-    "start": "npm run build && node dist/server.js"
-  },
+    "scripts": {
+      "build": "tsc -p tsconfig.json",
+      "dev": "tsc -p tsconfig.json && nodemon dist/server.js",
+      "start": "tsc -p tsconfig.json && node dist/server.js"
+    }
+  ,
   "keywords": [],
   "author": "",
   "type": "module",
