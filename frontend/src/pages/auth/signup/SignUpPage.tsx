@@ -125,16 +125,16 @@ const SignUpPage = () => {
 							</div>
 
 					</label>
-					<button className='btn rounded-full btn-primary text-white'>
+					<button className='btn rounded-full btn-primary text-white text-lg'>
 						{isPending ? "Loading..." : "Sign up"}
 					</button>
 					{isError && <p className='text-red-500'>{error.message}</p>}
 				</form>
 				<div className='flex flex-col lg:w-2/3 gap-2 mt-4'>
-					<p className='text-white text-lg'>Already have an account?</p>
-					<Link to='/login'>
-						<button className='btn rounded-full btn-primary text-white btn-outline w-full'>Sign in</button>
-					</Link>
+					<p className='text-white text-lg'>Already have an account? <Link to='/login'>
+						<span className='text-blue-500 underline w-full'>Login</span>
+					</Link> </p>
+					
 				</div>
 			</div>
 		</div>

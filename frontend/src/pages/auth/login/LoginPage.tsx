@@ -72,7 +72,7 @@ const LoginPage = () => {
 						<input
 							type='text'
 							className='grow'
-							placeholder='username'
+							placeholder='Username'
 							name='username'
 							onChange={handleInputChange}
 							value={formData.username}
@@ -93,14 +93,14 @@ const LoginPage = () => {
 								{isShowPassword ? <FaRegEye size={22} className="text-primary" /> : <FaRegEyeSlash size={22} className="text-primary" />}
 						</div>
 					</label>
-					<button className='btn rounded-full btn-primary text-white'>{isPending ? "Loading..." : "Login"}</button>
+					<button className='btn rounded-full btn-primary text-white text-lg'>{isPending ? "Loading..." : "Login"}</button>
 					{isError && <p className='text-red-500'>{error.message}</p>}
 				</form>
 				<div className='flex flex-col gap-2 mt-4'>
-					<p className='text-white text-lg'>{"Don't"} have an account?</p>
-					<Link to='/signup'>
-						<button className='btn rounded-full btn-primary text-white btn-outline w-full'>Sign up</button>
-					</Link>
+					<p className='text-white text-lg'>{"Don't"} have an account? <Link to='/signup'>
+						<span className="text-blue-500 underline">Sign-Up</span>
+					</Link></p>
+					
 				</div>
 			</div>
 		</div>
