@@ -31,7 +31,11 @@ const Posts:React.FC<PostsProps> = ({feedType,username, userId }) => {
 		queryKey: ["posts"],
 		queryFn: async ()=>{
 			try {
-				const res = await fetch (POST_ENDPOINT);
+				const res = await fetch (POST_ENDPOINT,{
+					headers:{
+						Authorization: `${localStorage.getItem("token")}`
+					}
+				});
 					const data = await res.json();
 					if(!res.ok){
 						throw new Error(data.error||"Something went wrong");
