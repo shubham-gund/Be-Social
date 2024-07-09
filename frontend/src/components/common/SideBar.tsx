@@ -30,16 +30,16 @@ const Sidebar: FC = () => {
 				}
 			});
 			const data = await res.json();
-
 			if (!res.ok) {
 				throw new Error(data.error || "Something went wrong");
 			}
+			navigate("/login"); 
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["authUser"] });
 			toast.success("Logged out successfully");
 			localStorage.clear()
-			navigate("/login"); 
+
 		},
 		onError: (error: Error) => {
 			toast.error(error.message || "Logout failed");
@@ -63,8 +63,8 @@ const Sidebar: FC = () => {
 	});
 
 	return (
-		<div className='md:flex-[2_2_0] w-18 max-w-52'>
-			<div className='sticky top-0 left-0 h-screen flex flex-col border-r border-gray-700 w-20 md:w-full'>
+		<div className='md:flex-[2_2_0] w-12 max-w-52'>
+			<div className='sticky top-0 left-0 h-screen flex flex-col border-r border-gray-700 w-12 md:w-full'>
 				<Link to='/' className='flex justify-center md:justify-start'>
 					<XSvg className='px-2 w-12 h-12 rounded-full fill-white hover:bg-stone-900' />
 				</Link>
