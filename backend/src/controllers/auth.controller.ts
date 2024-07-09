@@ -1,8 +1,7 @@
 import { Request,Response } from "express-serve-static-core"
-
+import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
-import { generateTokenAndSetCookie } from "../lib/utils/generateToken.js";
 
 export const signup = async (req:Request,res:Response)=>{
   
@@ -37,8 +36,12 @@ export const signup = async (req:Request,res:Response)=>{
     })
 
     await newUser.save();
-    generateTokenAndSetCookie(newUser._id.toString(),res);
+    const userId = newUser._id.toString();
+    const token = jwt.sign({userId},process.env.JWT_SECRET || "",{
+      expiresIn:"15d"
+    })
     res.status(200).json({
+        token,
         _id:newUser._id,
         fullName:newUser.fullName,
         username:newUser.username,
@@ -71,8 +74,12 @@ export const login = async (req:Request,res:Response)=>{
         error:"Invalid username or password"
       })
     }
-      generateTokenAndSetCookie(user._id.toString(),res);
+      const userId = user._id.toString();
+      const token = jwt.sign({userId},process.env.JWT_SECRET || "",{
+        expiresIn:"15d"
+      })
       res.status(200).json({
+        token,
         _id:user._id,
         fullName:user.fullName,
         username:user.username,

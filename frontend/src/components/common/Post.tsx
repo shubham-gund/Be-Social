@@ -26,6 +26,9 @@ const Post = ({ post }: PostProps) => {
         const res = await fetch(`https://be-social-8uqb.onrender.com/api/posts/${post._id}`,{
           method: "DELETE",
           credentials: 'include',
+          headers:{
+            Authorization: `${localStorage.getItem("jwt_token")}` ,
+          }
         })
         const data = await res.json();
         if(!res.ok){
@@ -48,6 +51,9 @@ const Post = ({ post }: PostProps) => {
         const res = await fetch(`https://be-social-8uqb.onrender.com/api/posts/like/${post._id}`,{
           method:"POST",
           credentials: 'include',
+          headers:{
+            Authorization: `${localStorage.getItem("jwt_token")}` ,
+          }
         });
         const data = await res.json();
         if(!res.ok){
@@ -79,7 +85,10 @@ const Post = ({ post }: PostProps) => {
       try {
         const res = await fetch(`https://be-social-8uqb.onrender.com/api/posts/comment/${post._id}`,{
           method:"POST",
-          headers:{"Content-Type":"application/json"},
+          headers:{
+            "Content-Type":"application/json",
+            Authorization: `${localStorage.getItem("jwt_token")}` ,
+          },
           body:JSON.stringify({text:comment}),
           credentials: 'include',
         })

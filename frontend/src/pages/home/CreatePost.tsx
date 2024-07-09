@@ -20,7 +20,10 @@ const CreatePost = () => {
 			try {
 				const res = await fetch("https://be-social-8uqb.onrender.com/api/posts/create",{
 					method:"POST",
-					headers:{'Content-Type':'application/json'},
+					headers:{
+						'Content-Type':'application/json',
+						Authorization: `${localStorage.getItem("jwt_token")}` ,
+					},
 					body:JSON.stringify({text,img}),
 					credentials: 'include',
 				})

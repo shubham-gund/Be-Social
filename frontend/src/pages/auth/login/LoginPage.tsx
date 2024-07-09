@@ -37,6 +37,8 @@ const LoginPage = () => {
 						credentials: 'include',
 				});
 				const data = await res.json();
+				const jwt = data.jwt_token;
+				localStorage.setItem("token", jwt);
 				if(!res.ok) {
 					throw new Error(data.error || data.message || "Something went wrong")
 				}

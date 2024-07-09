@@ -9,12 +9,12 @@ interface DecodedToken {
 
 export const protectedRoute = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const token = req.cookies.jwt;
+    // const token = req.cookies.jwt_token;
+    const token = req.header('authorization') || '';  // token
     console.log(token)
     if (!token) {
       return res.status(401).json({ message: "Unauthorized token not found" });
     }
-
     const secret = process.env.JWT_SECRET || "";
     const decoded = jwt.verify(token, secret) as DecodedToken;
     if (!decoded) {

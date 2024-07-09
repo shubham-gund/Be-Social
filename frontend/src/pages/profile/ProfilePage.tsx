@@ -35,6 +35,9 @@ const ProfilePage = () => {
       try {
         const res = await fetch(`https://be-social-8uqb.onrender.com/api/users/profile/${username}`,{
           credentials: 'include',
+          headers:{
+            Authorization: `${localStorage.getItem("jwt_token")}` ,
+          }
         })
         const data = await res.json();
         if(!res.ok) throw new Error(data.message || data.error || "Something went wrong")

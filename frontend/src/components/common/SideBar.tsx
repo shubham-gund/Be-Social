@@ -45,7 +45,11 @@ const Sidebar: FC = () => {
 	const { data: authUser } = useQuery<AuthUser | null>({
 		queryKey: ["authUser"],
 		queryFn: async () => {
-			const res = await fetch("/api/auth/me");
+			const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/me",{
+				headers:{
+					Authorization: `${localStorage.getItem("jwt_token")}` ,
+				}
+			});
 			if (!res.ok) {
 				return null;
 			}

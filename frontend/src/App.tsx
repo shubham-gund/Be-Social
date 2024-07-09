@@ -14,9 +14,13 @@ function App() {
 
 	const {data:authUser,isLoading} = useQuery({
 		queryKey: ["authUser"],
-		queryFn: async () => {
+		queryFn: async () => { 
 			try {
-				const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/me");
+				const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/me",{
+					headers:{
+						Authorization: `${localStorage.getItem("jwt_token")}` ,
+					}
+				});
 				const data = await res.json();
 				if(!res.ok){
 					throw new Error(data.message || "Something went wrong");

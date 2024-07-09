@@ -18,6 +18,7 @@ const useUpdateUserProfile = () => {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
+						Authorization: `${localStorage.getItem("jwt_token")}` ,
 					},
 					body: formData ? JSON.stringify(formData) : JSON.stringify({ coverImg, profileImg }) ,
 					credentials: 'include',
