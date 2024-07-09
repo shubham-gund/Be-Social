@@ -38,6 +38,7 @@ const Sidebar: FC = () => {
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["authUser"] });
 			toast.success("Logged out successfully");
+			localStorage.clear()
 			navigate("/login"); 
 		},
 		onError: (error: Error) => {

@@ -52,7 +52,7 @@ const Post = ({ post }: PostProps) => {
           method:"POST",
           credentials: 'include',
           headers:{
-            Authorization: `${localStorage.getItem("jwt_token")}` ,
+            Authorization: `${localStorage.getItem("token")}` ,
           }
         });
         const data = await res.json();
@@ -87,7 +87,7 @@ const Post = ({ post }: PostProps) => {
           method:"POST",
           headers:{
             "Content-Type":"application/json",
-            Authorization: `${localStorage.getItem("jwt_token")}` ,
+            Authorization: `${localStorage.getItem("token")}` ,
           },
           body:JSON.stringify({text:comment}),
           credentials: 'include',
