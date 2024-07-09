@@ -16,10 +16,7 @@ function App() {
 		queryKey: ["authUser"],
 		queryFn: async () => {
 			try {
-				const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/me",{
-					method: "GET",
-  				credentials: 'include',
-				});
+				const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/me");
 				const data = await res.json();
 				if(!res.ok){
 					throw new Error(data.message || "Something went wrong");
