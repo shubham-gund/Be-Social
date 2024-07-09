@@ -17,7 +17,8 @@ function App() {
 		queryFn: async () => {
 			try {
 				const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/me",{
-					credentials: 'include',
+					method: "GET",
+  				credentials: 'include',
 				});
 				const data = await res.json();
 				if(!res.ok){
