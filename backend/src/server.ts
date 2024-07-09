@@ -25,7 +25,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 app.use(cors(
   {
-    origin: '*',
+    origin: 'https://be-social-frontend-xi.vercel.app',
   credentials: true,
   }
 ));
