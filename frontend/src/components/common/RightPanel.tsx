@@ -14,7 +14,7 @@ const RightPanel: FC = () => {
 				const res = await fetch("https://be-social-8uqb.onrender.com/api/users/suggested",{
 					credentials: 'include',
 					headers:{
-						Authorization: `${localStorage.getItem("jwt_token")}` ,
+						Authorization: `${localStorage.getItem("token")}` ,
 					}
 				});
 				const data = await res.json();

@@ -22,7 +22,7 @@ const CreatePost = () => {
 					method:"POST",
 					headers:{
 						'Content-Type':'application/json',
-						Authorization: `${localStorage.getItem("jwt_token")}` ,
+						Authorization: `${localStorage.getItem("token")}` ,
 					},
 					body:JSON.stringify({text,img}),
 					credentials: 'include',

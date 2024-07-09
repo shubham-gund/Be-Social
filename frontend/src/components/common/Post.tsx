@@ -27,7 +27,7 @@ const Post = ({ post }: PostProps) => {
           method: "DELETE",
           credentials: 'include',
           headers:{
-            Authorization: `${localStorage.getItem("jwt_token")}` ,
+            Authorization: `${localStorage.getItem("token")}` ,
           }
         })
         const data = await res.json();

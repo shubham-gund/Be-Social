@@ -26,7 +26,7 @@ const Sidebar: FC = () => {
 				method: "POST",
 				credentials: 'include',
 				headers:{
-					Authorization: `${localStorage.getItem("jwt_token")}` ,
+					Authorization: `${localStorage.getItem("token")}` ,
 				}
 			});
 			const data = await res.json();
@@ -48,7 +48,7 @@ const Sidebar: FC = () => {
 	const { data: authUser } = useQuery<AuthUser | null>({
 		queryKey: ["authUser"],
 		queryFn: async () => {
-			const res = await fetch("/api/auth/me");
+			const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/me");
 			if (!res.ok) {
 				return null;
 			}
