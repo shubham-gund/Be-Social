@@ -1,6 +1,7 @@
 import { Request,Response } from "express-serve-static-core"
-import User from "../models/user.model.js";
+
 import bcrypt from "bcryptjs";
+import User from "../models/user.model.js";
 import { generateTokenAndSetCookie } from "../lib/utils/generateToken.js";
 
 export const signup = async (req:Request,res:Response)=>{
