@@ -6,8 +6,8 @@ import { useEffect } from "react";
  
 interface PostsProps {
   feedType: "posts" | "likes" | "forYou" | "following" ;
-  username: string;
-  userId: string;
+  username?: string;
+  userId?: string;
 }
 const Posts:React.FC<PostsProps> = ({feedType,username, userId }) => {
 
