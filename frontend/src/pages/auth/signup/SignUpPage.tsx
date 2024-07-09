@@ -45,7 +45,7 @@ const SignUpPage = () => {
 				});
 
 				const data = await res.json();
-				const jwt = data.jwt_token;
+				const jwt = data.token;
 				localStorage.setItem("token", jwt);
 				if (!res.ok) throw new Error(data.error || data.message || "Failed to create account");
 				return data;
