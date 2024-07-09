@@ -25,6 +25,9 @@ const Sidebar: FC = () => {
 			const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/logout", {
 				method: "POST",
 				credentials: 'include',
+				headers:{
+					Authorization: `${localStorage.getItem("jwt_token")}` ,
+				}
 			});
 			const data = await res.json();
 
