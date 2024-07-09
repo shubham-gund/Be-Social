@@ -10,8 +10,8 @@ const useFollow = ()=>{
      try {
       const res = await fetch(`https://be-social-8uqb.onrender.com/api/users/follow/${id}`,{
         method: "POST",
+        credentials: 'include',
       })
-
       const data = await res.json();
       if(!res.ok){
           throw new Error(data.message || data.error || "SOmething went wrong");

@@ -24,6 +24,7 @@ const Sidebar: FC = () => {
 		mutationFn: async () => {
 			const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/logout", {
 				method: "POST",
+				credentials: 'include',
 			});
 			const data = await res.json();
 

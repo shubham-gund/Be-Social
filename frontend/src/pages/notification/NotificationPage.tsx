@@ -14,7 +14,9 @@ const NotificationPage = () => {
     queryKey: ["notification"],
     queryFn: async () => {
       try {
-        const res = await fetch("https://be-social-8uqb.onrender.com/api/notification",);
+        const res = await fetch("https://be-social-8uqb.onrender.com/api/notification",{
+          credentials: 'include',
+        });
         const data = await res.json();
         if(!res.ok){
           throw new Error(data.message || data.error || "Something went wrong");
@@ -30,6 +32,7 @@ const NotificationPage = () => {
       try {
         const res = await fetch("https://be-social-8uqb.onrender.com/api/notification",{
           method:"DELETE",
+          credentials: 'include',
         });
         const data = await res.json();
         if(!res.ok){  

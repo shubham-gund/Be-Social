@@ -21,7 +21,8 @@ const CreatePost = () => {
 				const res = await fetch("https://be-social-8uqb.onrender.com/api/posts/create",{
 					method:"POST",
 					headers:{'Content-Type':'application/json'},
-					body:JSON.stringify({text,img})
+					body:JSON.stringify({text,img}),
+					credentials: 'include',
 				})
 				const data = await res.json();
 				if(!res.ok){

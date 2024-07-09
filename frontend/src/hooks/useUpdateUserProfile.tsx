@@ -20,6 +20,7 @@ const useUpdateUserProfile = () => {
 						"Content-Type": "application/json",
 					},
 					body: formData ? JSON.stringify(formData) : JSON.stringify({ coverImg, profileImg }) ,
+					credentials: 'include',
 				});
 				const data = await res.json();
 				if (!res.ok) {
