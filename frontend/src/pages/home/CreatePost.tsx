@@ -18,7 +18,7 @@ const CreatePost = () => {
 	const {mutate:createPost,isPending,isError,error} = useMutation({
 		mutationFn:async({text,img}:{text:string,img:string | ArrayBuffer | null})=>{
 			try {
-				const res = await fetch("/api/posts/create",{
+				const res = await fetch("https://be-social-8uqb.onrender.com/api/posts/create",{
 					method:"POST",
 					headers:{'Content-Type':'application/json'},
 					body:JSON.stringify({text,img})

@@ -11,7 +11,7 @@ const RightPanel: FC = () => {
 		queryKey: ['suggestedUsers'],
 		queryFn:async()=>{
 			try {
-				const res = await fetch("/api/users/suggested");
+				const res = await fetch("https://be-social-8uqb.onrender.com/api/users/suggested");
 				const data = await res.json();
 				if(!res.ok){
 					throw new Error(data.message || data.error || "Something went wrong");

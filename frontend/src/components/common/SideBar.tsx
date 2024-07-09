@@ -22,7 +22,7 @@ const Sidebar: FC = () => {
 
 	const { mutate: logout } = useMutation({
 		mutationFn: async () => {
-			const res = await fetch("/api/auth/logout", {
+			const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/logout", {
 				method: "POST",
 			});
 			const data = await res.json();

@@ -23,7 +23,7 @@ const Post = ({ post }: PostProps) => {
   const {mutate:deletePost, isPending:isDeleting} = useMutation({
     mutationFn: async () => {
       try {
-        const res = await fetch(`/api/posts/${post._id}`,{
+        const res = await fetch(`https://be-social-8uqb.onrender.com/api/posts/${post._id}`,{
           method: "DELETE",
         })
         const data = await res.json();
@@ -44,7 +44,7 @@ const Post = ({ post }: PostProps) => {
   const {mutate:likePost, isPending:isLiking} = useMutation({
     mutationFn:async()=>{
       try {
-        const res = await fetch(`/api/posts/like/${post._id}`,{
+        const res = await fetch(`https://be-social-8uqb.onrender.com/api/posts/like/${post._id}`,{
           method:"POST",
         });
         const data = await res.json();
@@ -75,7 +75,7 @@ const Post = ({ post }: PostProps) => {
   const {mutate:commentPost ,isPending:isCommenting} = useMutation({
     mutationFn:async()=>{
       try {
-        const res = await fetch(`/api/posts/comment/${post._id}`,{
+        const res = await fetch(`https://be-social-8uqb.onrender.com/api/posts/comment/${post._id}`,{
           method:"POST",
           headers:{"Content-Type":"application/json"},
           body:JSON.stringify({text:comment})

@@ -14,15 +14,15 @@ const Posts:React.FC<PostsProps> = ({feedType,username, userId }) => {
 	const getPostEndPoint = ()=>{
 		switch(feedType){
 			case "forYou" :
-					return "/api/posts/all";
+					return "https://be-social-8uqb.onrender.com/api/posts/all";
 			case "following" :
-					return "/api/posts/following";
+					return "https://be-social-8uqb.onrender.com/api/posts/following";
 			case "posts":
-				return `/api/posts/user/${username}`;
+				return `https://be-social-8uqb.onrender.com/api/posts/user/${username}`;
 			case "likes":
-				return `/api/posts/like/${userId}`;
+				return `https://be-social-8uqb.onrender.com/api/posts/like/${userId}`;
 			default:
-					return "/api/posts/all"
+					return "https://be-social-8uqb.onrender.com/api/posts/all"
 		}
 	}
 
