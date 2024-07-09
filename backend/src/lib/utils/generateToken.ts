@@ -11,6 +11,6 @@ export const generateTokenAndSetCookie = (userId:string,res:Response)=>{
   res.cookie("jwt",token,{
     maxAge:15*24*60*60*1000,
     httpOnly:true,
-    sameSite:"strict"
+    sameSite:"strict",
   })
 }
