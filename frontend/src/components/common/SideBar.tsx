@@ -25,21 +25,17 @@ const Sidebar: FC = () => {
 			const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/logout", {
 				method: "POST",
 				credentials: 'include',
-				headers:{
-					Authorization: `${localStorage.getItem("token")}` ,
-				}
 			});
 			const data = await res.json();
 			if (!res.ok) {
 				throw new Error(data.error || "Something went wrong");
 			}
-			navigate("/login"); 
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["authUser"] });
-			toast.success("Logged out successfully");
 			localStorage.clear()
-
+			navigate("/login"); 
+			toast.success("Logged out successfully");
 		},
 		onError: (error: Error) => {
 			toast.error(error.message || "Logout failed");
