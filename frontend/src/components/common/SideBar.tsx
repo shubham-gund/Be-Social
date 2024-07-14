@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import XSvg from "../svgs/Logo";
 
@@ -18,7 +18,6 @@ interface AuthUser {
 
 const Sidebar: FC = () => {
 	const queryClient = useQueryClient();
-	const navigate = useNavigate();
 
 	const { mutate: logout } = useMutation({
 		mutationFn: async () => {
@@ -34,7 +33,6 @@ const Sidebar: FC = () => {
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["authUser"] });
 			localStorage.clear()
-			navigate("/login"); 
 			toast.success("Logged out successfully");
 		},
 		onError: (error: Error) => {
