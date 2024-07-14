@@ -112,6 +112,7 @@ const Sidebar: FC = () => {
 								onClick={(e) => {
 									e.preventDefault();
 									logout();
+									logout();
 								}}
 							/>
 						</div>
