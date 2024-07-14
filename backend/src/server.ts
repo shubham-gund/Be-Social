@@ -25,7 +25,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use(cors(
   {
-    origin: 'https://be-social-frontend-xi.vercel.app',
+    origin: 'https://be-social-eta.vercel.app',
   credentials: true,
   }
 ));
