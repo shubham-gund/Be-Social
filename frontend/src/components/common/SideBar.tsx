@@ -33,7 +33,6 @@ const Sidebar: FC = () => {
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["authUser"] });
 			localStorage.clear()
-			toast.success("Logged out successfully");
 		},
 		onError: (error: Error) => {
 			toast.error(error.message || "Logout failed");
