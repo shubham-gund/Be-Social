@@ -35,7 +35,7 @@ const SignUpPage = () => {
 	const { mutate, isError, isPending, error } = useMutation({
 		mutationFn: async ({ email, username, fullName, password }:FormData) => {
 			try {
-				const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/signup", {
+				const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/signup", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",

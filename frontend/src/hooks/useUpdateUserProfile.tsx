@@ -14,7 +14,7 @@ const useUpdateUserProfile = () => {
 	const { mutateAsync: updateProfile, isPending: isUpdating } = useMutation<any, Error, UpdateProfileArgs, void>({
 		mutationFn: async ({formData , coverImg, profileImg}:UpdateProfileArgs) => {
 			try {
-				const res = await fetch(`https://be-social-8uqb.onrender.com/api/users/update`, {
+				const res = await fetch(`https://socialmedia-backend-production-5eb9.up.railway.app/api/users/update`, {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
