@@ -6,6 +6,7 @@ import { UserType } from "../../types";
 import useFollow from "../../hooks/useFollow";
 import LoadingSpinner from "./LoadingSpinner";
 
+
 const RightPanel: FC = () => {
 	const {data:suggestedUsers, isLoading} = useQuery<UserType[]>({
 		queryKey: ['suggestedUsers'],
