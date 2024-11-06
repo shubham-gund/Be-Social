@@ -1,5 +1,4 @@
 import daisyui from "daisyui";
-import daisyUIThemes from "daisyui/src/theming/themes";
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette';
 
 
@@ -10,6 +9,10 @@ export default {
 		extend: {
       animation: {
         aurora: "aurora 60s linear infinite",
+      },
+      colors: {
+        primary: "rgb(29, 155, 240)",
+				secondary: "rgb(24, 24, 24)",
       },
       keyframes: {
         aurora: {
@@ -28,13 +31,7 @@ export default {
 	daisyui: {
 		themes: [
 			"light",
-			{
-				black: {
-					...daisyUIThemes["black"],
-					primary: "rgb(29, 155, 240)",
-					secondary: "rgb(24, 24, 24)",
-				},
-			},
+			"dark"
 		],
 	},
 };

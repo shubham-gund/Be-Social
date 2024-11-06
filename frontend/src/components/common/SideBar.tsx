@@ -76,10 +76,10 @@ const Sidebar: FC = () => {
   });
 
   return (
-    <div className="md:flex-[2_2_0]">
+    <div className="md:w-64">
       {/* Sidebar layout for large screens */}
-      <div className="hidden md:flex flex-col sticky top-0 left-0 h-screen border-r border-gray-700 w-12 md:w-full">
-        <Link to="/" className="flex justify-center md:justify-start">
+      <div className="hidden md:flex flex-col sticky top-0 left-0 h-screen border-r border-gray-700 w-12 md:w-64">
+        <Link to="/" className="flex justify-center md:justify-start px-2 py-4" >
           {/* Replace with your logo */}
           <XSvg className='px-2 w-12 h-12 fill-white hover:bg-stone-900' />
         </Link>
@@ -87,7 +87,7 @@ const Sidebar: FC = () => {
           <li className="flex justify-center md:justify-start">
             <Link
               to="/"
-              className="flex gap-3 items-center hover:bg-stone-900 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:max-w-full cursor-pointer"
+              className="flex gap-3 items-center hover:bg-stone-900 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer"
             >
               <MdHomeFilled className="w-8 h-8" />
               <span className="text-lg hidden md:inline">Home</span>
@@ -96,7 +96,7 @@ const Sidebar: FC = () => {
           <li className="flex justify-center md:justify-start">
             <Link
               to="/notifications"
-              className="flex gap-3 items-center hover:bg-stone-900 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:max-w-full cursor-pointer"
+              className="flex gap-3 items-center hover:bg-stone-900 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer"
             >
               <IoNotifications className="w-6 h-6" />
               <span className="text-lg hidden md:inline">Notifications</span>
@@ -105,7 +105,7 @@ const Sidebar: FC = () => {
           <li className="flex justify-center md:justify-start">
             <Link
               to={`/profile/${authUser?.username}`}
-              className="flex gap-3 items-center hover:bg-stone-900 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:max-w-full cursor-pointer"
+              className="flex gap-3 items-center hover:bg-stone-900 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer"
             >
               <FaUser className="w-6 h-6" />
               <span className="text-lg hidden md:inline">Profile</span>
@@ -140,7 +140,7 @@ const Sidebar: FC = () => {
       </div>
 
       {/* Bottom navigation for small screens */}
-      <div className={`md:hidden fixed bottom-0 left-0 right-0 flex justify-between bg-slate-900 border-t border-gray-700 p-2 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div className={`md:hidden fixed bottom-0 left-0 right-0 flex justify-between bg-slate-950 border-t border-gray-700 p-2 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : 'translate-y-full'}`}>
         <Link to="/" className="flex-1 flex justify-center items-center">
           <MdHomeFilled className="w-7 h-7 text-white" />
         </Link>

@@ -5,8 +5,8 @@ import CreatePost from "./CreatePost";
 import { Search } from "lucide-react";
 import { UserType } from "../../types.js";
 type FeedType = "forYou" | "following";
-
-
+import XSvg from "../../components/svgs/Logo.js";
+import ThemeToggle from "../../components/common/ThemeToggle.js";
 
 interface TabProps {
   label: string;
@@ -145,8 +145,12 @@ const HomePage = () => {
   const [feedType, setFeedType] = useState<FeedType>("forYou");
 
   return (
-    <div className="flex-[4_4_0] mr-auto border-r border-gray-700 min-h-screen">
-      <SearchBar />
+    <div className="flex-[4_4_0] w-full mr-auto border-r border-gray-700 min-h-screen">
+      <div className=" flex justify-center items-center">
+        <XSvg className='md:hidden px-2 w-12 h-12 fill-white hover:bg-stone-900 mt-3 ml-4' />
+        <SearchBar />
+        <ThemeToggle/>
+      </div>
       <FeedTabs activeTab={feedType} onTabChange={setFeedType} />
       <CreatePost />
       <Posts feedType={feedType} />
