@@ -70,92 +70,102 @@ const SignUpPage = () => {
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
-
 	return (
-		<AuroraBackground>
-      <motion.div
-        initial={{ opacity: 0.0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.3,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}
-        className="relative flex flex-col gap-4 items-center justify-center px-4"
-      >
-				<div className='max-w-screen-xl mx-auto flex h-screen px-10 text-white'>
-					<div className='flex-1 hidden lg:flex items-center  justify-center'>
-						<XSvg className='lg:w-2/3 fill-white' />
-					</div>
-					<div className='flex-1 flex flex-col justify-center items-center'>
-						<form className='lg:w-2/3  mx-auto md:mx-20 flex gap-4 flex-col' onSubmit={handleSubmit}>
-							<XSvg className='w-24 lg:hidden fill-white' />
-							<h1 className='text-4xl font-extrabold text-white'>Join today.</h1>
-							<label className=' bg-black bg-opacity-40 input input-bordered rounded-2xl flex items-center gap-2'>
-								<MdOutlineMail  />
-								<input
-									type='email'
-									className='grow'
-									placeholder='Email'
-									name='email'
-									onChange={handleInputChange}
-									value={formData.email}
-								/>
-							</label>
-							<div className='flex gap-4 flex-wrap'>
-								<label className=' bg-black bg-opacity-40 input input-bordered rounded-2xl flex items-center gap-2 flex-1'>
-									<FaUser />
+		<div className="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+			<AuroraBackground className="bg-transparent absolute inset-0">
+				<motion.div
+					initial={{ opacity: 0.0, y: 40 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					transition={{
+						delay: 0.3,
+						duration: 0.8,
+						ease: "easeInOut",
+					}}
+					className="relative flex flex-col gap-4 items-center justify-center px-4"
+				>
+					<div className="max-w-screen-xl mx-auto flex h-full w-full justify-center items-center">
+						<div className="flex-1 hidden lg:flex items-center justify-center">
+							<XSvg className="lg:w-2/3 fill-white" />
+						</div>
+						<div className="flex-1 flex flex-col justify-center items-center">
+							<form
+								className="lg:w-2/3 mx-auto md:mx-20 flex gap-4 flex-col"
+								onSubmit={handleSubmit}
+							>
+								<XSvg className="w-24 lg:hidden fill-white" />
+								<h1 className="text-4xl font-extrabold text-white">Join today.</h1>
+								<label className="bg-black bg-opacity-40 input input-bordered rounded-2xl flex items-center gap-2">
+									<MdOutlineMail className="text-white" />
 									<input
-										type='text'
-										className='grow '
-										placeholder='Username'
-										name='username'
+										type="email"
+										className="grow"
+										placeholder="Email"
+										name="email"
 										onChange={handleInputChange}
-										value={formData.username}
+										value={formData.email}
 									/>
 								</label>
-								<label className=' bg-black bg-opacity-40 input input-bordered rounded-2xl flex items-center gap-2 flex-1'>
-									<MdDriveFileRenameOutline />
+								<div className="flex gap-4 flex-wrap">
+									<label className="bg-black bg-opacity-40 input input-bordered rounded-2xl flex items-center gap-2 flex-1">
+										<FaUser className="text-white" />
+										<input
+											type="text"
+											className="grow "
+											placeholder="Username"
+											name="username"
+											onChange={handleInputChange}
+											value={formData.username}
+										/>
+									</label>
+									<label className="bg-black bg-opacity-40 input input-bordered rounded-2xl flex items-center gap-2 flex-1">
+										<MdDriveFileRenameOutline className="text-white" />
+										<input
+											type="text"
+											className="grow"
+											placeholder="Full Name"
+											name="fullName"
+											onChange={handleInputChange}
+											value={formData.fullName}
+										/>
+									</label>
+								</div>
+								<label className="bg-black bg-opacity-40 input input-bordered rounded-2xl flex items-center gap-2">
+									<MdPassword className="text-white" />
 									<input
-										type='text'
-										className='grow'
-										placeholder='Full Name'
-										name='fullName'
+										type={isShowPassword ? "text" : "password"}
+										className="grow"
+										placeholder="Password"
+										name="password"
 										onChange={handleInputChange}
-										value={formData.fullName}
+										value={formData.password}
 									/>
-								</label>
-							</div>
-							<label className=' bg-black bg-opacity-40 input input-bordered rounded-2xl flex items-center gap-2'>
-								<MdPassword />
-								<input
-									type={isShowPassword ? "text" : "password"}
-									className='grow'
-									placeholder='Password'
-									name='password'
-									onChange={handleInputChange}
-									value={formData.password}
-								/>
 									<div onClick={toggleShowPassword} className="cursor-pointer pl-2">
-										{isShowPassword ? <FaRegEye size={22} className="text-primary" /> : <FaRegEyeSlash size={22} className="text-primary" />}
+										{isShowPassword ? (
+											<FaRegEye size={22} className="text-primary" />
+										) : (
+											<FaRegEyeSlash size={22} className="text-primary" />
+										)}
 									</div>
-
-							</label>
-							<button className='btn rounded-full btn-primary text-white text-lg'>
-								{isPending ? "Loading..." : "Sign up"}
-							</button>
-							{isError && <p className='text-red-500'>{error.message}</p>}
-						</form>
-						<div className='flex flex-col lg:w-2/3 gap-2 mt-4'>
-							<p className='text-white text-lg'>Already have an account? <Link to='/login'>
-								<span className='text-blue-500 underline w-full'>Login</span>
-							</Link> </p>
-							
+								</label>
+								<button className="btn rounded-full btn-primary text-white text-lg">
+									{isPending ? "Loading..." : "Sign up"}
+								</button>
+								{isError && <p className="text-red-500">{error.message}</p>}
+							</form>
+							<div className="flex flex-col lg:w-2/3 gap-2 mt-4">
+								<p className="text-white text-lg">
+									Already have an account?{" "}
+									<Link to="/login">
+										<span className="text-blue-500 underline w-full">Login</span>
+									</Link>{" "}
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
-		</motion.div>
-    </AuroraBackground>
+				</motion.div>
+			</AuroraBackground>
+		</div>
 	);
+	
 };
 export default SignUpPage;

@@ -119,7 +119,7 @@ const SearchBar = () => {
       {showDropdown && searchQuery && (
         <div 
           ref={dropdownRef}
-          className="absolute left-4 right-4 mt-2 max-h-96 overflow-y-auto bg-gray-800 rounded-lg border border-gray-700 shadow-lg z-50"
+          className="absolute left-4 right-4 mt-2 max-h-96 overflow-y-auto bg-neutral rounded-lg border border-gray-700 shadow-lg z-50"
         >
           {isLoading ? (
             <div className="p-4 text-center text-gray-400">Searching...</div>
@@ -128,7 +128,7 @@ const SearchBar = () => {
               <Link
                 key={user._id}
                 to={`/profile/${user.username}`}
-                className="flex items-center gap-3 p-3 hover:bg-gray-700 cursor-pointer transition duration-300"
+                className="flex items-center gap-3 p-3 hover:bg-base-200 cursor-pointer transition duration-300"
                 onClick={() => {
                   setShowDropdown(false);
                   setSearchQuery("");
