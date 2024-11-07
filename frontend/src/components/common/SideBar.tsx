@@ -41,7 +41,7 @@ const Sidebar: FC = () => {
 
   const { mutate: logout } = useMutation({
     mutationFn: async () => {
-      const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app//api/auth/logout", {
+      const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/logout", {
         method: "POST",
         credentials: "include",
       });
@@ -62,7 +62,7 @@ const Sidebar: FC = () => {
   const { data: authUser } = useQuery<AuthUser | null>({
     queryKey: ["authUser"],
     queryFn: async () => {
-      const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app//api/auth/me", {
+      const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/me", {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
         },
