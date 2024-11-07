@@ -7,6 +7,7 @@ import { UserType } from "../../types.js";
 type FeedType = "forYou" | "following";
 import XSvg from "../../components/svgs/Logo.js";
 import ThemeToggle from "../../components/common/ThemeToggle.js";
+import { useTheme } from "../../contexts/ThemeContext.js";
 
 interface TabProps {
   label: string;
@@ -15,19 +16,31 @@ interface TabProps {
 }
 
 
-const FeedTab = ({ label, isActive, onClick }: TabProps) => (
-  <div
-    className="flex justify-center flex-1 p-3 hover:bg-secondary transition duration-300 cursor-pointer relative"
-    onClick={onClick}
-  >
-    {label}
-    {isActive && (
-      <div className="absolute bottom-0 w-10 h-1 rounded-full bg-primary" />
-    )}
-  </div>
-);
+const FeedTab = ({ label, isActive, onClick }: TabProps) => {
+  const { theme } = useTheme(); // Hook to get the current theme, e.g., 'light' or 'dark'
 
-const FeedTabs = ({ activeTab, onTabChange }: { activeTab: FeedType; onTabChange: (tab: FeedType) => void }) => (
+  return (
+    <div
+      className={`flex justify-center flex-1 p-3 transition duration-300 cursor-pointer relative ${
+        theme === "dark" ? "hover:bg-base-200" : "hover:bg-gray-200"
+      }`}
+      onClick={onClick}
+    >
+      {label}
+      {isActive && (
+        <div className="absolute bottom-0 w-10 h-1 rounded-full bg-primary" />
+      )}
+    </div>
+  );
+};
+
+const FeedTabs = ({
+  activeTab,
+  onTabChange,
+}: {
+  activeTab: FeedType;
+  onTabChange: (tab: FeedType) => void;
+}) => (
   <div className="flex w-full border-b border-gray-700">
     <FeedTab
       label="For you"
@@ -69,7 +82,7 @@ const SearchBar = () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `https://socialmedia-backend-production-5eb9.up.railway.app/api/users/search?username=${encodeURIComponent(searchQuery)}`,
+          `https://socialmedia-backend-production-5eb9.up.railway.app//api/users/search?username=${encodeURIComponent(searchQuery)}`,
           {
             method: "GET",
             credentials: 'include',
@@ -98,7 +111,7 @@ const SearchBar = () => {
           placeholder="Search users..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full px-10 py-2 bg-gray-800 rounded-full border border-gray-700 focus:outline-none focus:border-primary transition duration-300"
+          className="w-full px-10 py-2 bg-neutral rounded-full border border-gray-700 focus:outline-none focus:border-primary transition duration-300"
         />
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
       </div>
@@ -145,9 +158,9 @@ const HomePage = () => {
   const [feedType, setFeedType] = useState<FeedType>("forYou");
 
   return (
-    <div className="flex-[4_4_0] w-full mr-auto border-r border-gray-700 min-h-screen">
-      <div className=" flex justify-center items-center">
-        <XSvg className='md:hidden px-2 w-12 h-12 fill-white hover:bg-stone-900 mt-3 ml-4' />
+    <div className="flex-[4_4_0] w-full mr-auto border-r border-base-300 min-h-screen bg-base-100">
+      <div className="flex justify-center items-center">
+        <XSvg className="md:hidden px-2 w-12 h-12 fill-base-content hover:bg-base-200 mt-3 ml-4" />
         <SearchBar />
         <ThemeToggle/>
       </div>

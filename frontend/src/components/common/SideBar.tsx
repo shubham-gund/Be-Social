@@ -41,7 +41,7 @@ const Sidebar: FC = () => {
 
   const { mutate: logout } = useMutation({
     mutationFn: async () => {
-      const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/logout", {
+      const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app//api/auth/logout", {
         method: "POST",
         credentials: "include",
       });
@@ -59,10 +59,10 @@ const Sidebar: FC = () => {
     },
   });
 
-  const { data: authUser } = useQuery<AuthUser | null>( {
+  const { data: authUser } = useQuery<AuthUser | null>({
     queryKey: ["authUser"],
     queryFn: async () => {
-      const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/me", {
+      const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app//api/auth/me", {
         headers: {
           Authorization: `${localStorage.getItem("token")}`,
         },
@@ -78,16 +78,15 @@ const Sidebar: FC = () => {
   return (
     <div className="md:w-64">
       {/* Sidebar layout for large screens */}
-      <div className="hidden md:flex flex-col sticky top-0 left-0 h-screen border-r border-gray-700 w-12 md:w-64">
+      <div className="hidden md:flex flex-col sticky top-0 left-0 h-screen border-r border-base-300 w-12 md:w-64 bg-base-100">
         <Link to="/" className="flex justify-center md:justify-start px-2 py-4" >
-          {/* Replace with your logo */}
-          <XSvg className='px-2 w-12 h-12 fill-white hover:bg-stone-900' />
+          <XSvg className='px-2 w-12 h-12 fill-base-content' />
         </Link>
         <ul className="flex flex-col gap-3 mt-4">
           <li className="flex justify-center md:justify-start">
             <Link
               to="/"
-              className="flex gap-3 items-center hover:bg-stone-900 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer"
+              className="flex gap-3 items-center hover:bg-base-200 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer text-base-content"
             >
               <MdHomeFilled className="w-8 h-8" />
               <span className="text-lg hidden md:inline">Home</span>
@@ -96,7 +95,7 @@ const Sidebar: FC = () => {
           <li className="flex justify-center md:justify-start">
             <Link
               to="/notifications"
-              className="flex gap-3 items-center hover:bg-stone-900 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer"
+              className="flex gap-3 items-center hover:bg-base-200 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer text-base-content"
             >
               <IoNotifications className="w-6 h-6" />
               <span className="text-lg hidden md:inline">Notifications</span>
@@ -105,7 +104,7 @@ const Sidebar: FC = () => {
           <li className="flex justify-center md:justify-start">
             <Link
               to={`/profile/${authUser?.username}`}
-              className="flex gap-3 items-center hover:bg-stone-900 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer"
+              className="flex gap-3 items-center hover:bg-base-200 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer text-base-content"
             >
               <FaUser className="w-6 h-6" />
               <span className="text-lg hidden md:inline">Profile</span>
@@ -115,7 +114,7 @@ const Sidebar: FC = () => {
         {authUser && (
           <Link
             to={`/profile/${authUser.username}`}
-            className="mt-auto mb-14 flex gap-2 items-start transition-all duration-300 hover:bg-stone-900 py-2 px-4 rounded-full"
+            className="mt-auto mb-14 flex gap-2 items-start transition-all duration-300 hover:bg-base-200 py-2 px-4 rounded-full"
           >
             <div className="hidden md:inline-flex">
               <div className="w-9">
@@ -124,11 +123,11 @@ const Sidebar: FC = () => {
             </div>
             <div className="flex justify-between flex-1 hidden md:flex">
               <div>
-                <p className="text-white font-bold text-sm w-20 truncate">{authUser.fullName}</p>
-                <p className="text-slate-500 w-20 truncate text-xs">@{authUser.username}</p>
+                <p className="text-base-content font-bold text-sm w-20 truncate">{authUser.fullName}</p>
+                <p className="text-base-content/70 w-20 truncate text-xs">@{authUser.username}</p>
               </div>
               <BiLogOut
-                className="w-6 h-6 cursor-pointer"
+                className="w-6 h-6 cursor-pointer text-base-content"
                 onClick={(e) => {
                   e.preventDefault();
                   logout();
@@ -140,15 +139,15 @@ const Sidebar: FC = () => {
       </div>
 
       {/* Bottom navigation for small screens */}
-      <div className={`md:hidden fixed bottom-0 left-0 right-0 flex justify-between bg-slate-950 border-t border-gray-700 p-2 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : 'translate-y-full'}`}>
+      <div className={`md:hidden fixed bottom-0 left-0 right-0 z-10 flex justify-between bg-base-100 border-t border-base-300 p-2 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : 'translate-y-full'}`}>
         <Link to="/" className="flex-1 flex justify-center items-center">
-          <MdHomeFilled className="w-7 h-7 text-white" />
+          <MdHomeFilled className="w-7 h-7 text-base-content" />
         </Link>
         <Link to="/notifications" className="flex-1 flex justify-center items-center">
-          <IoNotifications className="w-6 h-6 text-white" />
+          <IoNotifications className="w-6 h-6 text-base-content" />
         </Link>
         <Link to={`/profile/${authUser?.username}`} className="flex-1 flex justify-center items-center">
-          <FaUser className="w-6 h-6 text-white" />
+          <FaUser className="w-6 h-6 text-base-content" />
         </Link>
         <button
           className="flex-1 flex justify-center items-center"
@@ -157,7 +156,7 @@ const Sidebar: FC = () => {
             logout();
           }}
         >
-          <BiLogOut className="w-6 h-6 text-white" />
+          <BiLogOut className="w-6 h-6 text-base-content" />
         </button>
       </div>
     </div>

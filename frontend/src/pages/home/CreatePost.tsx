@@ -18,7 +18,7 @@ const CreatePost = () => {
 	const {mutate:createPost,isPending,isError,error} = useMutation({
 		mutationFn:async({text,img}:{text:string,img:string | ArrayBuffer | null})=>{
 			try {
-				const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/posts/create",{
+				const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app//api/posts/create",{
 					method:"POST",
 					headers:{
 						'Content-Type':'application/json',

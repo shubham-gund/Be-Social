@@ -29,7 +29,7 @@ const LoginPage = () => {
 	const {mutate, isPending ,isError, error} = useMutation({
 		mutationFn:async({username,password}:FormData)=>{
 			try {
-				const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/login", {
+				const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app//api/auth/login", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",

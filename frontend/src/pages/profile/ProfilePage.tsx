@@ -33,7 +33,7 @@ const ProfilePage = () => {
     queryKey: ["userProfile"],
     queryFn: async() =>{ 
       try {
-        const res = await fetch(`https://socialmedia-backend-production-5eb9.up.railway.app/api/users/profile/${username}`,{
+        const res = await fetch(`https://socialmedia-backend-production-5eb9.up.railway.app//api/users/profile/${username}`,{
           credentials: 'include',
           headers:{
             Authorization: `${localStorage.getItem("token")}` ,
@@ -198,9 +198,7 @@ const ProfilePage = () => {
               </div>
               <div className="flex w-full border-b border-gray-700 mt-4">
                 <div
-                  className={`flex justify-center flex-1 p-3 hover:bg-secondary transition duration-300 relative cursor-pointer ${
-                    feedType === "posts" ? "text-white" : "text-slate-500"
-                  }`}
+                  className={`flex justify-center flex-1 p-3 hover:bg-base-200 transition duration-300 relative cursor-pointer`}
                   onClick={() => setFeedType("posts")}
                 >
                   Posts
@@ -209,9 +207,7 @@ const ProfilePage = () => {
                   )}
                 </div>
                 <div
-                  className={`flex justify-center flex-1 p-3 hover:bg-secondary transition duration-300 relative cursor-pointer ${
-                    feedType === "likes" ? "text-white" : "text-slate-500"
-                  }`}
+                  className={`flex justify-center flex-1 p-3 hover:bg-base-200 transition duration-300 relative cursor-pointer `}
                   onClick={() => setFeedType("likes")}
                 >
                   Likes
