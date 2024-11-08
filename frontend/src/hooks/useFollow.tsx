@@ -8,7 +8,7 @@ const useFollow = ()=>{
   const {mutate:followUnfollow,isPending} = useMutation({
     mutationFn: async (id:string)=>{
      try {
-      const res = await fetch(`https://socialmedia-backend-production-5eb9.up.railway.app/api/users/follow/${id}`,{
+      const res = await fetch(`http://localhost:3000/api/users/follow/${id}`,{
         method: "POST",
         credentials: 'include',
         headers:{

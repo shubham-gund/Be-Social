@@ -29,7 +29,7 @@ const LoginPage = () => {
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: async ({ username, password }: FormData) => {
       try {
-        const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/login", {
+        const res = await fetch("http://localhost:3000/api/auth/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -63,6 +63,8 @@ const LoginPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  document.documentElement.classList.add("dark"); // login page by default dark theme
+
   return (
     <div className=" text-white min-h-screen flex items-center justify-center">
       <AuroraBackground className="bg-transparent absolute inset-0">
@@ -78,14 +80,14 @@ const LoginPage = () => {
         >
           <div className="max-w-screen-xl mx-auto flex h-full w-full justify-center items-center">
             <div className="flex-1 hidden lg:flex items-center justify-center px-16">
-              <XSvg className="lg:w-80 fill-white" />
+              <XSvg fill="#FFFFFF" className="lg:w-80" />
             </div>
             <div className="flex-1 flex flex-col justify-center items-center">
               <form
                 className="lg:w-2/3 mx-auto md:mx-20 flex gap-4 flex-col"
                 onSubmit={handleSubmit}
               >
-                <XSvg className="w-24 lg:hidden fill-white" />
+                <XSvg fill="#FFFFFF" className=" w-24 lg:hidden" />
                 <h1 className="text-4xl font-extrabold text-white">{"Let's"} go.</h1>
                 <label className="input input-bordered rounded-2xl bg-black bg-opacity-60 flex items-center gap-2">
                   <MdOutlineMail className="text-white" />

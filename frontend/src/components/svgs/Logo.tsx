@@ -5,7 +5,7 @@ const XSvg = (props: any) => {
 
   return (
     <svg
-      fill={theme === 'dark' ? "#FFFFFF" : "#000000"}  // Change color based on theme
+      fill={theme === 'light' ? "#000000" : "#FFFFFF"}  // Change color based on theme
       {...props}
       version="1.1"
       id="Layer_1"
