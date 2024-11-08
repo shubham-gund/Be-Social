@@ -23,7 +23,7 @@ const Post = ({ post }: PostProps) => {
   const {mutate:deletePost, isPending:isDeleting} = useMutation({
     mutationFn: async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/posts/${post._id}`,{
+        const res = await fetch(`https://socialmedia-backend-production-5eb9.up.railway.app/api/posts/${post._id}`,{
           method: "DELETE",
           credentials: 'include',
           headers:{
@@ -48,7 +48,7 @@ const Post = ({ post }: PostProps) => {
   const {mutate:likePost, isPending:isLiking} = useMutation({
     mutationFn:async()=>{
       try {
-        const res = await fetch(`http://localhost:3000/api/posts/like/${post._id}`,{
+        const res = await fetch(`https://socialmedia-backend-production-5eb9.up.railway.app/api/posts/like/${post._id}`,{
           method:"POST",
           credentials: 'include',
           headers:{
@@ -83,7 +83,7 @@ const Post = ({ post }: PostProps) => {
   const {mutate:commentPost ,isPending:isCommenting} = useMutation({
     mutationFn:async()=>{
       try {
-        const res = await fetch(`http://localhost:3000/api/posts/comment/${post._id}`,{
+        const res = await fetch(`https://socialmedia-backend-production-5eb9.up.railway.app/api/posts/comment/${post._id}`,{
           method:"POST",
           headers:{
             "Content-Type":"application/json",

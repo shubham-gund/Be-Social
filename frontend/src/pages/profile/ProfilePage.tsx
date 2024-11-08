@@ -33,7 +33,7 @@ const ProfilePage = () => {
     queryKey: ["userProfile"],
     queryFn: async() =>{ 
       try {
-        const res = await fetch(`http://localhost:3000/api/users/profile/${username}`,{
+        const res = await fetch(`https://socialmedia-backend-production-5eb9.up.railway.app/api/users/profile/${username}`,{
           credentials: 'include',
           headers:{
             Authorization: `${localStorage.getItem("token")}` ,

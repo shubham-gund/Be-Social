@@ -12,7 +12,7 @@ const RightPanel: FC = () => {
 		queryKey: ['suggestedUsers'],
 		queryFn:async()=>{
 			try {
-				const res = await fetch("http://localhost:3000/api/users/suggested",{
+				const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/users/suggested",{
 					credentials: 'include',
 					headers:{
 						Authorization: `${localStorage.getItem("token")}` ,

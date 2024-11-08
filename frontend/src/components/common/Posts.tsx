@@ -14,15 +14,15 @@ const Posts:React.FC<PostsProps> = ({feedType,username, userId }) => {
 	const getPostEndPoint = ()=>{
 		switch(feedType){
 			case "forYou" :
-					return "http://localhost:3000/api/posts/all";
+					return "https://socialmedia-backend-production-5eb9.up.railway.app/api/posts/all";
 			case "following" :
-					return "http://localhost:3000/api/posts/following";
+					return "https://socialmedia-backend-production-5eb9.up.railway.app/api/posts/following";
 			case "posts":
-				return `http://localhost:3000/api/posts/user/${username}`;
+				return `https://socialmedia-backend-production-5eb9.up.railway.app/api/posts/user/${username}`;
 			case "likes":
-				return `http://localhost:3000/api/posts/like/${userId}`;
+				return `https://socialmedia-backend-production-5eb9.up.railway.app/api/posts/like/${userId}`;
 			default:
-					return "http://localhost:3000/api/posts/all"
+					return "https://socialmedia-backend-production-5eb9.up.railway.app/api/posts/all"
 		}
 	}
 

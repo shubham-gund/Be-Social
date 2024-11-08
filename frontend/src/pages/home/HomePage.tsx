@@ -82,7 +82,7 @@ const SearchBar = () => {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:3000/api/users/search?username=${encodeURIComponent(searchQuery)}`,
+          `https://socialmedia-backend-production-5eb9.up.railway.app/api/users/search?username=${encodeURIComponent(searchQuery)}`,
           {
             method: "GET",
             credentials: 'include',
