@@ -136,7 +136,7 @@ const Sidebar: FC = () => {
                 <img className="rounded-full" src={authUser.profileImg || "/avatar-placeholder.png"} alt="Profile" />
               </div>
             </div>
-            <div className="flex justify-between flex-1 hidden md:flex">
+            <div className="flex justify-between flex-1 md:flex">
               <div>
                 <p className="text-base-content font-bold text-sm w-20 truncate">{authUser.fullName}</p>
                 <p className="text-base-content/70 w-20 truncate text-xs">@{authUser.username}</p>
@@ -156,13 +156,22 @@ const Sidebar: FC = () => {
       {/* Bottom navigation for small screens */}
       <div className={`md:hidden fixed bottom-0 left-0 right-0 z-10 flex justify-between bg-base-100 border-t border-base-300 p-2 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : 'translate-y-full'}`}>
         <Link to="/" className="flex-1 flex justify-center items-center ">
-          <MdHomeFilled className="w-7 h-7 text-base-content" />
+          <MdHomeFilled className={`w-7 h-7  ${
+                isActive(`/`) ? 'text-blue-500' : 'text-base-content'
+              }
+              `} />
         </Link>
         <Link to="/notifications" className="flex-1 flex justify-center items-center">
-          <IoNotifications className="w-6 h-6 text-base-content" />
+          <IoNotifications className={`w-7 h-6 ${
+                isActive(`/notifications`) ? 'text-blue-500' : ''
+              }
+              `}  />
         </Link>
         <Link to={`/profile/${authUser?.username}`} className="flex-1 flex justify-center items-center">
-          <FaUser className="w-6 h-6 text-base-content" />
+          <FaUser className={`w-6 h-6  ${
+                isActive(`/profile/${authUser?.username}`) ? 'text-blue-500' : 'text-base-content'
+              }
+              `} />
         </Link>
         <button
           className="flex-1 flex justify-center items-center"
@@ -171,7 +180,7 @@ const Sidebar: FC = () => {
             logout();
           }}
         >
-          <BiLogOut className="w-6 h-6 text-base-content" />
+          <BiLogOut className="w-7 h-7  text-red-400" />
         </button>
       </div>
     </div>
