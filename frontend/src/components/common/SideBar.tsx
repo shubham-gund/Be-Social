@@ -8,6 +8,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import XSvg from "../svgs/Logo";
 import { useLocation } from 'react-router-dom'; 
+import { BadgePlus, Bot } from "lucide-react";
 
 interface AuthUser {
   fullName: string;
@@ -97,7 +98,7 @@ const Sidebar: FC = () => {
               }
               `}
             >
-              <MdHomeFilled className="w-8 h-8" />
+              <MdHomeFilled className="w-7 h-8" />
               <span className="text-lg hidden md:inline">Home</span>
             </Link>
           </li>
@@ -116,6 +117,18 @@ const Sidebar: FC = () => {
           </li>
           <li className="flex justify-center md:justify-start">
             <Link
+              to={`/create`}
+              className={`flex gap-3 items-center hover:bg-base-200 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer text-base-content  ${
+                isActive(`/create`) ? 'bg-base-200 border-r-4 border-blue-600' : 'text-base-content'
+              }
+              `}
+            >
+              <BadgePlus className="w-6 h-6"/>
+              <span className="text-lg hidden md:inline">Create</span>
+            </Link>
+          </li>
+          <li className="flex justify-center md:justify-start">
+            <Link
               to={`/profile/${authUser?.username}`}
               className={`flex gap-3 items-center hover:bg-base-200 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer text-base-content  ${
                 isActive(`/profile/${authUser?.username}`) ? 'bg-base-200 border-r-4 border-blue-600' : 'text-base-content'
@@ -124,6 +137,18 @@ const Sidebar: FC = () => {
             >
               <FaUser className="w-6 h-6" />
               <span className="text-lg hidden md:inline">Profile</span>
+            </Link>
+          </li>
+          <li className="flex justify-center md:justify-start">
+            <Link
+              to={`/chat`}
+              className={`flex gap-3 items-center hover:bg-base-200 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer text-base-content  ${
+                isActive(`/chat`) ? 'bg-base-200 border-r-4 border-blue-600' : 'text-base-content'
+              }
+              `}
+            >
+              <Bot className="w-6 h-6"/>
+              <span className="text-lg hidden md:inline">Chat with Ai</span>
             </Link>
           </li>
         </ul>
@@ -165,6 +190,12 @@ const Sidebar: FC = () => {
         <Link to="/notifications" className="flex-1 flex justify-center items-center">
           <IoNotifications className={`w-7 h-6 ${
                 isActive(`/notifications`) ? 'text-blue-500' : ''
+              }
+              `}  />
+        </Link>
+        <Link to="/create" className="flex-1 flex justify-center items-center">
+          <BadgePlus className={`w-7 h-6 ${
+                isActive(`/create`) ? 'text-blue-500' : ''
               }
               `}  />
         </Link>

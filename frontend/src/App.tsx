@@ -9,6 +9,8 @@ import ProfilePage from "./pages/profile/ProfilePage";
 import {Toaster} from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "./components/common/LoadingSpinner";
+import ChatPage from "./pages/chat/chatPage";
+import CreatePost from "./pages/home/CreatePost";
 
 function App() {
 
@@ -46,6 +48,8 @@ function App() {
 				<Route path='/signup' element={!authUser ?<SignUpPage />:<Navigate to="/"/>} />
 				<Route path='/notifications' element={authUser ? <NotificationPage /> : <Navigate to="/login"/>} />
 				<Route path='/profile/:username' element={authUser ? <ProfilePage /> : <Navigate to="/login"/>} />
+				<Route path='/chat' element={authUser ? <ChatPage /> : <Navigate to="/login"/>} />
+				<Route path='/create' element={authUser ? <CreatePost /> : <Navigate to="/login"/>} />
 			</Routes>
       {authUser && <RightPanel />}
 			<Toaster/>

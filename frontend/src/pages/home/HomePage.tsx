@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Posts from "../../components/common/Posts.jsx";
-import CreatePost from "./CreatePost";
 import { Search } from "lucide-react";
 import { UserType } from "../../types.js";
 type FeedType = "forYou" | "following";
 import XSvg from "../../components/svgs/Logo.js";
 import ThemeToggle from "../../components/common/ThemeToggle.js";
 import { useTheme } from "../../contexts/ThemeContext.js";
+import ChatAiButton from "../../components/common/chatAiButton.jsx";
 
 interface TabProps {
   label: string;
@@ -165,8 +165,10 @@ const HomePage = () => {
         <ThemeToggle/>
       </div>
       <FeedTabs activeTab={feedType} onTabChange={setFeedType} />
-      <CreatePost />
       <Posts feedType={feedType} />
+      <div className="sticky bottom-10 right-10">
+        <ChatAiButton/>
+      </div>
     </div>
   );
 };
