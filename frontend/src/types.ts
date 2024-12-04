@@ -40,3 +40,18 @@ export interface NotificationType {
   from: NotificationFromType;
   type: "follow" | "like"; // Add other notification types as needed
 }
+
+
+export interface User {
+  _id: string;
+  username: string;
+}
+
+export interface Message {
+  _id: string;
+  senderId: string;
+  receiverId: string;
+  text: string;
+  createdAt: string;
+}
+

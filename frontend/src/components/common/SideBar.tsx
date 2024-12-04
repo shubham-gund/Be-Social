@@ -8,7 +8,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import XSvg from "../svgs/Logo";
 import { useLocation } from 'react-router-dom'; 
-import { BadgePlus, Bot } from "lucide-react";
+import { BadgePlus, Bot, MessagesSquare } from "lucide-react";
 
 interface AuthUser {
   fullName: string;
@@ -149,6 +149,18 @@ const Sidebar: FC = () => {
             >
               <Bot className="w-6 h-6"/>
               <span className="text-lg hidden md:inline">Chat with Ai</span>
+            </Link>
+          </li>
+          <li className="flex justify-center md:justify-start">
+            <Link
+              to={`/message`}
+              className={`flex gap-3 items-center hover:bg-base-200 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer text-base-content  ${
+                isActive(`/message`) ? 'bg-base-200 border-r-4 border-blue-600' : 'text-base-content'
+              }
+              `}
+            >
+              <MessagesSquare className="w-6 h-6"/>
+              <span className="text-lg hidden md:inline">Messages</span>
             </Link>
           </li>
         </ul>
