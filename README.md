@@ -45,7 +45,7 @@ This project is a feature-rich social media application frontend, enabling users
 
 ### Prerequisites
 - Node.js installed on your system.
-- A backend server to handle API requests and Socket.io connections.
+- A backend server to handle API requests and Socket.io connections.(https://github.com/shubham-gund/socialMedia-Backend)
 
 ### Steps
 1. Clone the repository:
