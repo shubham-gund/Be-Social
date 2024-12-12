@@ -41,10 +41,14 @@ export interface NotificationType {
   type: "follow" | "like"; // Add other notification types as needed
 }
 
-
 export interface User {
   _id: string;
+  fullName: string;
   username: string;
+  profilePic?: string;
+  email?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface Message {

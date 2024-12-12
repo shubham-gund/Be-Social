@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { AuroraBackground } from "../../../components/ui/aurora-background";
 import XSvg from "../../../components/svgs/Logo";
-
 import { MdOutlineMail, MdPassword } from "react-icons/md";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -15,7 +14,7 @@ interface FormData {
 }
 
 const LoginPage = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     username: "",
     password: "",
   });
@@ -28,25 +27,21 @@ const LoginPage = () => {
   const queryClient = useQueryClient();
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: async ({ username, password }: FormData) => {
-      try {
-        const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-          credentials: "include",
-        });
-        const data = await res.json();
-        const jwt = data.token;
-        console.log(jwt);
-        localStorage.setItem("token", jwt);
-        if (!res.ok) {
-          throw new Error(data.error || data.message || "Something went wrong");
-        }
-      } catch (error: any) {
-        throw new Error(error.message);
+      const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+        credentials: "include",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || data.message || "Something went wrong");
       }
+      const jwt = data.token;
+      localStorage.setItem("token", jwt);
+      return data;
     },
     onSuccess: () => {
       toast.success("Login Successful");
@@ -66,7 +61,7 @@ const LoginPage = () => {
   document.documentElement.classList.add("dark"); // login page by default dark theme
 
   return (
-    <div className=" text-white min-h-screen flex items-center justify-center">
+    <div className="text-white min-h-screen flex items-center justify-center">
       <AuroraBackground className="bg-transparent absolute inset-0">
         <motion.div
           initial={{ opacity: 0.0, y: 40 }}
@@ -142,4 +137,5 @@ const LoginPage = () => {
     </div>
   );
 };
+
 export default LoginPage;

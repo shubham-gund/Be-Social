@@ -1,28 +1,24 @@
-import React, { useState } from 'react';
-import { useUsers } from '../../hooks/useUsers';
-import { useMessages } from '../../hooks/useMessages';
-import UserList from '../../components/chatui/ChatList';
-import ChatWindow from '../../components/chatui/ChatWindow';
-import { User } from '../../types';
+import { useChatStore } from "../../store/useChatStore";
 
-const MessagePage: React.FC = () => {
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const { data: users, isLoading: isLoadingUsers, error: usersError } = useUsers();
-  const { data: messages } = useMessages(selectedUser?._id ?? '');
+import Sidebar from "../../components/chatui/ChatSideBar";
+import NoChatSelected from "../../components/chatui/NoChatSelected";
+import ChatContainer from "../../components/chatui/ChatContainer";
 
-  if (isLoadingUsers) return <div>Loading users...</div>;
-  if (usersError) return <div>Error loading users: {usersError.message}</div>;
+const HomePage = () => {
+  const { selectedUser } = useChatStore();
 
   return (
-    <div className="flex h-screen w-full">
-      <UserList users={users} onSelectUser={setSelectedUser} />
-      <ChatWindow
-        selectedUser={selectedUser}
-        messages={messages ?? []}
-      />
+    <div className="h-screen bg-base-200">
+      <div className="flex items-center justify-center pt-20 px-4">
+        <div className="bg-base-100 rounded-lg shadow-cl w-full max-w-6xl h-[calc(100vh-8rem)]">
+          <div className="flex h-full rounded-lg overflow-hidden">
+            <Sidebar />
+
+            {!selectedUser ? <NoChatSelected /> : <ChatContainer />}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
-
-export default MessagePage;
-
+export default HomePage;
