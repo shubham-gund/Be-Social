@@ -139,7 +139,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     const { authUser } = get();
     if (!authUser || get().socket?.connected) return;
 
-    const socket = io(BASE_URL, {
+    const socket = io("https://socialmedia-backend-production-5eb9.up.railway.app", {
       query: { userId: authUser._id }
     });
     socket.connect();

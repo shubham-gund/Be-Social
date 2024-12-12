@@ -22,7 +22,7 @@ import { useAuthStore } from "./store/useAuthStore";
 export const SocketContext = React.createContext<Socket | null>(null);
 
 function App() {
-  const [socket, setSocket] = useState<Socket | null>(null);
+  const [socket,] = useState<Socket | null>(null);
 
   const { data: authUser, isLoading } = useQuery({
     queryKey: ["authUser"],
