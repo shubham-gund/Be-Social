@@ -51,7 +51,7 @@ const ChatContainer: React.FC = () => {
     <div className="flex flex-col h-full">  
       <ChatHeader/>
       
-      <div className="flex-grow overflow-y-auto p-4 space-y-2">
+      <div className="flex-grow overflow-y-auto p-4 space-y-2 w-full">
         {messages.map((message:Message) => (
           <div 
             key={message._id} 
@@ -64,9 +64,11 @@ const ChatContainer: React.FC = () => {
                   : 'bg-gray-200 text-black'
               }`}
             >
-              {message.text && <div className="mb-1">{message.text}</div>}
-              <div className="text-xs opacity-70 text-right">
-                {formatMessageTime(message.createdAt)}
+              <div className="flex">
+                {message.text && <div className="px-2">{message.text}</div>}
+                <div className="text-xs opacity-70 text-right">
+                  {formatMessageTime(message.createdAt)}
+                </div>
               </div>
             </div>
           </div>

@@ -45,7 +45,7 @@ export interface User {
   _id: string;
   fullName: string;
   username: string;
-  profilePic?: string;
+  profileImg?: string;
   email?: string;
   createdAt?: Date;
   updatedAt?: Date;
