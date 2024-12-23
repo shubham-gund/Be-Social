@@ -56,7 +56,7 @@ const ChatInterface: React.FC = () => {
   return (
     <div className="flex flex-col h-screen border-e border-gray-700">
       {/* Top Bar */}
-      <div className="sticky top-0 z-10 flex items-center p-4 bg-neutral border-b border-gray-700">
+      <div className="sticky top-0 z-10 flex items-center px-4 py-2 bg-neutral border-b border-gray-700">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
             <Bot size={24} />

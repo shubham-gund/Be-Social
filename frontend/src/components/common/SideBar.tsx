@@ -184,6 +184,7 @@ const Sidebar: FC = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   logout();
+                  toast.error("Double click to Logout");
                 }}
               />
             </div>

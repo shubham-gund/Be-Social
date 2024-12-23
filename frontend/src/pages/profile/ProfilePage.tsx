@@ -80,7 +80,7 @@ const ProfilePage = () => {
         <div className="flex flex-col">
           {!isLoading && !isRefetching && user && (
             <>
-              <div className="flex gap-10 px-4 py-2 items-center sticky top-0 z-10 bg-base-100">
+              <div className="flex gap-10 items-center p-4 border-b border-gray-700 sticky top-0 z-10 bg-base-100">
                 <Link to="/">
                   <FaArrowLeft className="w-4 h-4" />
                 </Link>
