@@ -87,7 +87,10 @@ const Sidebar: React.FC = () => {
 
             <div className="flex-1 min-w-0">
               <div className="flex justify-between items-baseline">
-                <span className="font-medium truncate">{user.fullName}</span>
+                <div className="">
+                  <div className="flex justify-start font-medium truncate ">{user.username}</div>
+                  <div className="flex justify-start font-medium truncate text-base-300">{user.fullName}</div>
+                </div>
                 <div className="text-sm text-gray-500 truncate">
                 {onlineUsers.includes(user._id) 
                   ? "Online" 

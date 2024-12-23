@@ -192,30 +192,40 @@ const Sidebar: FC = () => {
       </div>
 
       {/* Bottom navigation for small screens */}
-      <div className={`md:hidden fixed bottom-0 left-0 right-0 z-10 flex justify-between bg-base-100 border-t border-base-300 p-2 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : 'translate-y-full'}`}>
-        <Link to="/" className="flex-1 flex justify-center items-center ">
+      <div className={`md:hidden fixed bottom-0 left-0 right-0 z-10 flex justify-between bg-base-100 border-t border-base-300 py-2 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : 'translate-y-full'}`}>
+        <Link to="/" className="flex-1 flex justify-center items-center rounded-full hover:bg-base-200">
           <MdHomeFilled className={`w-7 h-7  ${
                 isActive(`/`) ? 'text-blue-500' : 'text-base-content'
               }
               `} />
         </Link>
-        <Link to="/notifications" className="flex-1 flex justify-center items-center">
-          <IoNotifications className={`w-7 h-6 ${
+        <Link to="/notifications" className="flex-1 flex justify-center items-center rounded-full hover:bg-base-200">
+          <IoNotifications className={`w-6 h-6 ${
                 isActive(`/notifications`) ? 'text-blue-500' : ''
               }
               `}  />
         </Link>
-        <Link to="/create" className="flex-1 flex justify-center items-center">
-          <BadgePlus className={`w-7 h-6 ${
+        <Link to="/create" className="flex-1 flex justify-center items-center rounded-full hover:bg-base-200">
+          <BadgePlus className={`w-6 h-6 ${
                 isActive(`/create`) ? 'text-blue-500' : ''
               }
               `}  />
         </Link>
-        <Link to={`/profile/${authUser?.username}`} className="flex-1 flex justify-center items-center">
+        <Link to={`/profile/${authUser?.username}`} className="flex-1 flex justify-center items-center rounded-full hover:bg-base-200">
           <FaUser className={`w-6 h-6  ${
                 isActive(`/profile/${authUser?.username}`) ? 'text-blue-500' : 'text-base-content'
               }
               `} />
+        </Link>
+        <Link
+              to={`/message`}
+              className={`flex-1 flex justify-center items-center hover:bg-base-200 transition-all rounded-full duration-300 py-2 md:w-11/12 cursor-pointer text-base-content
+              `}
+            >
+              <MessagesSquare className={`w-7 h-6   ${
+                isActive(`/message`) ? 'text-blue-500' : 'text-base-content'
+              }`}/>
+              <span className="text-lg hidden md:inline">Messages</span>
         </Link>
         <button
           className="flex-1 flex justify-center items-center"

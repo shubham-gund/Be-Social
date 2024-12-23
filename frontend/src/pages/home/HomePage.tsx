@@ -159,12 +159,14 @@ const HomePage = () => {
 
   return (
     <div className="flex-[4_4_0] w-full mr-auto border-r border-base-300 min-h-screen bg-base-100">
-      <div className="flex justify-center items-center">
-        <XSvg className="md:hidden px-2 w-12 h-12 fill-base-content hover:bg-base-200 mt-3 ml-4" />
-        <SearchBar />
-        <ThemeToggle/>
+      <div className="sticky top-0 z-10 bg-base-100">
+        <div className="flex justify-center items-center">
+          <XSvg className="md:hidden px-2 w-12 h-12 fill-base-content hover:bg-base-200 mt-3 ml-4" />
+          <SearchBar />
+          <ThemeToggle/>
+        </div>
+        <FeedTabs activeTab={feedType} onTabChange={setFeedType}/>      
       </div>
-      <FeedTabs activeTab={feedType} onTabChange={setFeedType} />
       <Posts feedType={feedType} />
       <div className="sticky bottom-10 right-10">
         <ChatAiButton/>

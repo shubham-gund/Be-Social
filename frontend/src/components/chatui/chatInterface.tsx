@@ -56,7 +56,7 @@ const ChatInterface: React.FC = () => {
   return (
     <div className="flex flex-col h-screen border-e border-gray-700">
       {/* Top Bar */}
-      <div className="flex items-center p-4 bg-neutral border-b border-gray-700">
+      <div className="sticky top-0 z-10 flex items-center p-4 bg-neutral border-b border-gray-700">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
             <Bot size={24} />
@@ -92,7 +92,7 @@ const ChatInterface: React.FC = () => {
       </div>
 
       {/* Input Area */}
-      <div className="sticky bottom-10 md:bottom-2 bg-base-100 p-4">
+      <div className="sticky bottom-10 md:bottom-2 bg-base-100 p-6 ">
         <form onSubmit={handleSubmit}>
           <div className="flex items-center space-x-2">
             <input
