@@ -41,7 +41,7 @@ const ChatContainer: React.FC = () => {
   // Loading state
   if (isMessagesLoading) {
     return (
-      <div className="flex flex-col items-center justify-center h-full">
+      <div className="flex flex-col items-center justify-center min-h-screen">
         <MessageSkeleton />
       </div>
     );
@@ -58,13 +58,13 @@ const ChatContainer: React.FC = () => {
             className={`flex ${message.senderId === authUser?._id ? 'justify-end' : 'justify-start'}`}
           >
             <div 
-              className={`max-w-[70%] p-2 rounded-lg ${
+              className={`max-w-[70%] p-2 rounded-lg  break-words overflow-hidden ${
                 message.senderId === authUser?._id 
                   ? 'bg-blue-500 text-white' 
                   : 'bg-gray-200 text-black'
               }`}
             >
-              <div className="flex">
+              <div className="flex w-full">
                 {message.text && <div className="px-2">{message.text}</div>}
                 <div className="text-xs opacity-70 text-right">
                   {formatMessageTime(message.createdAt)}
