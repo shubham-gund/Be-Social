@@ -139,24 +139,35 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     const { authUser } = get();
     if (!authUser || get().socket?.connected) return;
 
-    const socket = io("https://socialmedia-backend-production-5eb9.up.railway.app", {
-      query: { userId: authUser._id }
-    });
-    socket.connect();
+    get().disconnectSocket();
 
-    set({ socket: socket });
-    
+    const socket = io("https://socialmedia-backend-production-5eb9.up.railway.app", {
+      query: { userId: authUser._id },
+      reconnection: true,
+      reconnectionAttempts: 5,
+      reconnectionDelay: 1000,
+    });
+
     socket.on('connect', () => {
+      console.log('Socket connected:', socket.id);
       set({ socket });
     });
 
     socket.on('getOnlineUsers', (userIds: string[]) => {
+      console.log('Online users updated:', userIds);
       set({ onlineUsers: userIds });
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Socket disconnected');
     });
 
     socket.on('connect_error', (error) => {
       console.error('Socket connection error:', error);
     });
+
+    // Don't set the socket until it's connected
+    socket.connect();
   },
 
   disconnectSocket: () => {
