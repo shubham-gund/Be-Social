@@ -15,6 +15,7 @@ import LoadingSpinner from "./components/common/LoadingSpinner";
 import ChatPage from "./pages/chat/chatPage";
 import CreatePost from "./pages/home/CreatePost";
 import MessagePage from "./pages/message/MessagePage";
+import LandingPage from "./pages/landing/LandingPage";
 
 // Create a context for socket to be used across the app
 import React from "react";
@@ -65,21 +66,25 @@ function App() {
 
   return (
     <SocketContext.Provider value={socket}>
-      <div className="flex max-w-6xl mx-auto">
+      <div className="flex justify-center w-full">
         {/* common component */}
         {authUser && <Sidebar />}
         <Routes>
-          <Route
-            path="/"
+        <Route
+            path="/feed"
             element={authUser ? <HomePage /> : <Navigate to="/login" />}
           />
           <Route
+            path="/"
+            element={!authUser ? <LandingPage /> : <Navigate to="/feed" />}
+          />
+          <Route
             path="/login"
-            element={!authUser ? <LoginPage /> : <Navigate to="/" />}
+            element={!authUser ? <LoginPage /> : <Navigate to="/feed" />}
           />
           <Route
             path="/signup"
-            element={!authUser ? <SignUpPage /> : <Navigate to="/" />}
+            element={!authUser ? <SignUpPage /> : <Navigate to="/feed" />}
           />
           <Route
             path="/notifications"

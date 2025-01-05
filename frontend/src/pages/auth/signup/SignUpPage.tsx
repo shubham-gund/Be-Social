@@ -66,7 +66,7 @@ const SignUpPage = () => {
 		e.preventDefault(); // page won't reload
 		mutate(formData);
 	};
-
+  document.documentElement.classList.add("dark");
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};

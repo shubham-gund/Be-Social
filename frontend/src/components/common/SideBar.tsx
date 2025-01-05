@@ -91,7 +91,7 @@ const Sidebar: FC = () => {
         <ul className="flex flex-col gap-3 mt-4">
           <li className="flex justify-center md:justify-start">
             <Link
-              to="/"
+              to="/feed"
               className={`flex gap-3 items-center hover:bg-base-200 transition-all rounded-full duration-300 py-2 pl-2 pr-4 md:w-11/12 cursor-pointer text-base-content
               ${
                 isActive('/') ? 'bg-base-200 border-r-4 border-blue-600' : 'text-base-content'
@@ -196,7 +196,7 @@ const Sidebar: FC = () => {
       <div className={`md:hidden fixed bottom-0 left-0 right-0 z-10 flex justify-between bg-base-100 border-t border-base-300 py-2 transition-transform duration-300 ${showNavbar ? 'translate-y-0' : 'translate-y-full'}`}>
         <Link to="/" className="flex-1 flex justify-center items-center rounded-full hover:bg-base-200">
           <MdHomeFilled className={`w-7 h-7  ${
-                isActive(`/`) ? 'text-blue-500' : 'text-base-content'
+                isActive(`/feed`) ? 'text-blue-500' : 'text-base-content'
               }
               `} />
         </Link>
