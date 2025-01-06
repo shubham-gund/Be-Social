@@ -17,15 +17,15 @@ interface Feature {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, description }) => {
   const [ref, inView] = useInView({
-    triggerOnce: false, // Change triggerOnce to false
-    threshold: 0.1, // This triggers the animation when 10% of the element is in view
+    triggerOnce: false,
+    threshold: 0.1,
   });
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} // Animation based on visibility
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6 }}
       className="bg-gradient-to-b from-purple-950 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
     >
@@ -73,22 +73,22 @@ export const Features: React.FC = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-black px-20">
-      <div className="container mx-auto px-6">
+    <section id="features" className="py-20 bg-black w-full">
+      <div className="w-full px-6 sm:px-12 md:px-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6 }}  
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Powerful Features for Modern Social Connection
           </h2>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto">
             Experience the next generation of social networking with our AI-powered features
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} />
           ))}
@@ -97,3 +97,5 @@ export const Features: React.FC = () => {
     </section>
   );
 };
+
+export default Features;

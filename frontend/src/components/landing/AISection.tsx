@@ -9,16 +9,16 @@ export const AISection = () => {
   });
 
   return (
-    <section id="ai-power" className="py-20 bg-gradient-to-b from-black to-purple-950 w-full px-20">
-      <div className="w-full px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+    <section id="ai-power" className="py-20 bg-gradient-to-b from-black to-purple-950 px-6 sm:px-12 md:px-20">
+      <div className="w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div
             ref={ref}
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}  // Animation on view
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6">
               Powered by Advanced{" "}
               <span className="bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
                 Artificial Intelligence
@@ -30,7 +30,7 @@ export const AISection = () => {
                   <Bot className="w-6 h-6 text-purple-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Smart Chat Assistant</h3>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-2">Smart Chat Assistant</h3>
                   <p className="text-gray-600">
                     Our AI chat assistant helps you maintain engaging conversations and suggests
                     relevant responses based on context.
@@ -42,7 +42,7 @@ export const AISection = () => {
                   <Sparkles className="w-6 h-6 text-purple-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">AI-Generated Captions</h3>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-2">AI-Generated Captions</h3>
                   <p className="text-gray-600">
                     Create perfect captions for your posts with our AI-powered caption generator
                     that understands your content.
@@ -54,7 +54,7 @@ export const AISection = () => {
                   <MessageSquareText className="w-6 h-6 text-purple-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Quick Reply Suggestions</h3>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-2">Quick Reply Suggestions</h3>
                   <p className="text-gray-600">
                     Get intelligent reply suggestions that match your communication style and
                     maintain meaningful conversations.
@@ -74,7 +74,7 @@ export const AISection = () => {
             <img
               src="https://media.istockphoto.com/id/1494104649/photo/ai-chatbot-artificial-intelligence-digital-concept.jpg?s=612x612&w=0&k=20&c=1Zq2sj3W0tWcpc-n1fVt4dQQOBGhtwcAk1H2eQ5MAbI="
               alt="AI Technology"
-              className="rounded-2xl shadow-2xl"
+              className="rounded-2xl shadow-2xl w-full h-auto"
             />
             <div className="absolute -top-6 -right-6 bg-white p-4 rounded-xl shadow-lg">
               <Sparkles className="w-8 h-8 text-purple-600" />

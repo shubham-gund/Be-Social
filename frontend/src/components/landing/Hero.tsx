@@ -3,29 +3,28 @@ import { MessageSquareText, Sparkles } from 'lucide-react';
 
 export const Hero = () => {
   return (
-    <section className="min-h-screen pt-20 flex items-center bg-gradient-to-b from-purple-950 to-black via-slate-900
- w-full p-20">
-      <div className="w-full px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center w-full">
+    <section className="min-h-screen pt-20 flex justify-center items-center bg-gradient-to-b from-purple-950 to-black via-slate-900 w-full px-6 sm:px-12 md:px-20 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center ">
           {/* Left Section: Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}  // Ensure this triggers every time the element enters the viewport
             transition={{ duration: 0.8 }}
+            className="text-center md:text-left"
           >
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
               Connect Smarter with
               <span className="bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
                 {" "}AI-Powered{" "}
               </span>
               Social Media
             </h1>
-            <p className="text-xl text-slate-400 mb-8">
+            <p className="text-lg sm:text-xl text-slate-400 mb-8">
               Experience social networking enhanced by AI. Get smart replies, AI-generated captions,
               and real-time messaging that makes connecting more meaningful.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -63,7 +62,6 @@ export const Hero = () => {
               <MessageSquareText className="w-8 h-8 text-blue-500" />
             </div>
           </motion.div>
-        </div>
       </div>
     </section>
   );
