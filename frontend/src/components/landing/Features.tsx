@@ -1,101 +1,144 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { MessageSquareText, Sparkles, Send, Image, Bot, Users, LucideIcon } from 'lucide-react';
+'use client'
 
-interface FeatureCardProps {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-}
+import * as React from 'react'
+import { motion } from "framer-motion"
+import { Bot, Sparkles, MessageCircle, Zap, Users, Wand2 } from 'lucide-react'
+import { Card } from '../ui/Card'
 
 interface Feature {
-  icon: LucideIcon;
-  title: string;
-  description: string;
+  icon: React.ElementType
+  title: string
+  description: string
+  quote: string
+  emoji?: string
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon: Icon, title, description }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
+const features: Feature[] = [
+  {
+    icon: Bot,
+    title: "AI Chat Assistant",
+    description: "Get instant responses and suggestions powered by advanced AI technology.",
+    quote: "Bro AI itna smart hai, conversation carry kar leta hai",
+    emoji: "😎"
+  },
+  {
+    icon: Sparkles,
+    title: "Smart Captions",
+    description: "Generate engaging captions for your posts using AI-powered suggestions.",
+    quote: "Caption ke liye dimaag nahi lagana padta",
+    emoji: "💕"
+  },
+  {
+    icon: MessageCircle,
+    title: "Quick Replies",
+    description: "Respond faster with intelligent reply suggestions based on context.",
+    quote: "Reply me bhi sigma bante hai",
+    emoji: "💪"
+  },
+  {
+    icon: Zap,
+    title: "Real-time Messaging",
+    description: "Connect instantly with friends through seamless real-time messaging.",
+    quote: "Messaging smooth like butter",
+    emoji: "⚡"
+  },
+  {
+    icon: Users,
+    title: "Community Building",
+    description: "Create and join communities with like-minded individuals.",
+    quote: "Apni public, apna zone",
+    emoji: "🎯"
+  },
+  {
+    icon: Wand2,
+    title: "AI Content Enhancement",
+    description: "Enhance your content with AI-powered editing and suggestions.",
+    quote: "Content ko next level pe le jaao",
+    emoji: "✨"
+  }
+]
 
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.6 }}
-      className="bg-gradient-to-b from-purple-950 to-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-    >
-      <div className="bg-purple-900 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-        <Icon className="w-6 h-6 text-purple-100" />
-      </div>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-300">{description}</p>
-    </motion.div>
-  );
-};
-
-export const Features: React.FC = () => {
-  const features: Feature[] = [
-    {
-      icon: Bot,
-      title: "AI Chat Assistant",
-      description: "Get instant responses and suggestions powered by advanced AI technology."
-    },
-    {
-      icon: Image,
-      title: "Smart Captions",
-      description: "Generate engaging captions for your posts using AI-powered suggestions."
-    },
-    {
-      icon: MessageSquareText,
-      title: "Quick Replies",
-      description: "Respond faster with intelligent reply suggestions based on context."
-    },
-    {
-      icon: Send,
-      title: "Real-time Messaging",
-      description: "Connect instantly with friends through seamless real-time messaging."
-    },
-    {
-      icon: Users,
-      title: "Community Building",
-      description: "Create and join communities with like-minded individuals."
-    },
-    {
-      icon: Sparkles,
-      title: "AI Content Enhancement",
-      description: "Enhance your content with AI-powered editing and suggestions."
+export default function Features() {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
     }
-  ];
+  }
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  }
 
   return (
-    <section id="features" className="py-20 bg-black w-full">
-      <div className="w-full px-6 sm:px-12 md:px-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}  
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Powerful Features for Modern Social Connection
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto">
-            Experience the next generation of social networking with our AI-powered features
-          </p>
-        </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-          {features.map((feature, index) => (
-            <FeatureCard key={index} {...feature} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+    <div id='features' className=" min-h-screen bg-black pt-4">
+      <section className="w-full py-16 px-4 md:px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-500 mb-4">
+              Features that Pass the Vibe Check
+            </h2>
+          </motion.div>
 
-export default Features;
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show" 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {features.map((feature, index) => {
+              const Icon = feature.icon
+              return (
+                <motion.div 
+                  key={index} 
+                  variants={item}
+                  whileHover={{ scale: 1.02 }}
+                  className="group"
+                >
+                  <Card className="h-full p-6 bg-zinc-900/50 backdrop-blur border-zinc-800 group-hover:bg-zinc-900/70 group-hover:border-purple-500/50 transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2.5 rounded-xl bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors duration-300">
+                        <Icon className="w-6 h-6 text-purple-400" />
+                      </div>
+                      <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                        {feature.title}
+                      </h3>
+                    </div>
+                    <p className="text-zinc-400 mb-4 text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <div className="p-4 rounded-xl bg-zinc-800/50 text-white backdrop-blur-sm group-hover:bg-zinc-800/70 transition-colors duration-300">
+                      <p className="flex items-center gap-2 text-sm">
+                        {feature.quote} 
+                        {feature.emoji && (
+                          <span className="animate-bounce">{feature.emoji}</span>
+                        )}
+                      </p>
+                    </div>
+                  </Card>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
