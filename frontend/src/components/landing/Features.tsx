@@ -1,7 +1,5 @@
-'use client'
-
 import * as React from 'react'
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { Bot, Sparkles, MessageCircle, Zap, Users, Wand2 } from 'lucide-react'
 import { Card } from '../ui/Card'
 
@@ -59,6 +57,9 @@ const features: Feature[] = [
 ]
 
 export default function Features() {
+  const ref = React.useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.2 })
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -82,12 +83,12 @@ export default function Features() {
   }
 
   return (
-    <div id='features' className=" min-h-screen bg-black pt-4">
-      <section className="w-full py-16 px-4 md:px-6">
+    <div id='features' className="min-h-screen bg-black pt-4">
+      <section ref={ref} className="w-full py-16 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center mb-16"
           >
@@ -99,7 +100,7 @@ export default function Features() {
           <motion.div
             variants={container}
             initial="hidden"
-            animate="show" 
+            animate={isInView ? "show" : "hidden"}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {features.map((feature, index) => {
@@ -141,4 +142,3 @@ export default function Features() {
     </div>
   )
 }
-
