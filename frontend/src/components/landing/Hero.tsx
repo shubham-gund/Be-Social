@@ -41,7 +41,7 @@ const Hero = () => {
     hover: { scale: 1.1 },
   };
   return (
-    <section id="hero" className="min-h-screen bg-black text-white pt-20" ref={ref}>
+    <section id="hero" className="min-h-screen bg-black text-white pt-8 sm:pt-20" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 py-20">
           {/* Text Section */}
           <motion.div
@@ -80,19 +80,19 @@ const Hero = () => {
             >
               Join the vibe where AI meets social. Generate captions, get smart replies, and connect with your crew - all with that extra chill factor. ✨
             </motion.p>
-            <div className="flex flex-wrap gap-4">
-              <motion.div
-                whileHover={buttonVariants.hover}
-                className="bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 font-bold text-xl rounded-full hover:opacity-90 transition-opacity duration-200"
-              >
-                <Link to="/signup">Get Started!!</Link>
-              </motion.div>
+            <div className="flex flex-wrap gap-4  ">
               <motion.button
                 whileHover={buttonVariants.hover}
-                className="bg-neutral-800 px-8 py-4 rounded-full text-xl font-semibold hover:bg-neutral-700 transition-colors duration-200 border border-purple-500/20"
+                className="bg-neutral-800 px-4 sm:px-8 py-4 rounded-full text-xl font-semibold hover:bg-neutral-700 transition-colors duration-200 border border-purple-500/20"
               >
                 See Features
               </motion.button>
+              <motion.div
+                whileHover={buttonVariants.hover}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 px-4 sm:px-8 py-4 font-bold text-xl rounded-full hover:opacity-90 transition-opacity duration-200"
+              >
+                <Link to="/signup">Get Started!!</Link>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -107,25 +107,25 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
             >
               <motion.div
-                className="p-4 rounded-lg flex items-center gap-3"
+                className="sm:p-4 rounded-lg flex items-center gap-3"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center p-2">
                   <span className="text-2xl">🤖</span>
                 </div>
-                <p className="bg-gray-800 text-white font-semibold p-4 rounded-xl">
+                <p className="bg-gray-800 text-white font-semibold p-2 sm:p-4 rounded-xl">
                   Ready to keep it chill with AI-powered features? 😎
                 </p>
               </motion.div>
               <motion.div
-                className="relative flex items-center gap-3"
+                className="relative flex items-center gap-3 sm:ml-6"
                 whileHover={{ scale: 1.05 }}
               >
-                <p className="ml-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold p-4">
+                <p className="w-9/12 sm:w-10/12 ml-3 sm:ml-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold p-2 sm:p-4">
                   Always keeping it cool with smart replies! 🚀
                 </p>
-                <div className="absolute right-12 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                  <span className="text-2xl">✨</span>
+                <div className="absolute  right-0 sm:right-4 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                  <span className="text-lg sm:text-2xl">✨</span>
                 </div>
               </motion.div>
             </motion.div>

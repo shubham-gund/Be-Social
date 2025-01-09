@@ -112,7 +112,7 @@ const TestimonialCard = ({ testimonial, isActive }: {
         </div>
       </div>
       <p className="text-white mb-4">{testimonial.content}</p>
-      <div className="flex gap-1">
+      <div className="flex justify-center gap-1">
         {Array.from({ length: testimonial.rating }).map((_, i) => (
           <span key={i} className="text-yellow-400">★</span>
         ))}
