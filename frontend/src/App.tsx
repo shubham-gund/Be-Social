@@ -66,7 +66,7 @@ function App() {
 
   return (
     <SocketContext.Provider value={socket}>
-      <div className="flex justify-center sm:w-full">
+      <div className={`${authUser ? 'max-w-6xl' : 'w-full'} flex justify-center mx-auto sm:w-full`}>
         {/* common component */}
         {authUser && <Sidebar />}
         <Routes>

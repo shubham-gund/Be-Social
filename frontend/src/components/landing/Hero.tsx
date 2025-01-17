@@ -83,13 +83,13 @@ const Hero = () => {
             <div className="flex flex-wrap gap-4  ">
               <motion.button
                 whileHover={buttonVariants.hover}
-                className="bg-neutral-800 px-4 sm:px-8 py-4 rounded-full text-xl font-semibold hover:bg-neutral-700 transition-colors duration-200 border border-purple-500/20"
+                className="bg-neutral-800 px-4 sm:px-8 py-4 rounded-full text-lg sm:text-xl font-semibold hover:bg-neutral-700 transition-colors duration-200 border border-purple-500/20"
               >
                 See Features
               </motion.button>
               <motion.div
                 whileHover={buttonVariants.hover}
-                className="bg-gradient-to-r from-purple-500 to-pink-500 px-4 sm:px-8 py-4 font-bold text-xl rounded-full hover:opacity-90 transition-opacity duration-200"
+                className="bg-gradient-to-r from-purple-500 to-pink-500 px-4 sm:px-8 py-4 font-bold text-lg sm:text-xl  rounded-full hover:opacity-90 transition-opacity duration-200"
               >
                 <Link to="/signup">Get Started!!</Link>
               </motion.div>
