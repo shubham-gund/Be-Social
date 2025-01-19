@@ -1,14 +1,15 @@
-import * as React from 'react'
-import { motion, useInView } from "framer-motion"
-import { Bot, Sparkles, MessageCircle, Zap, Users, Wand2 } from 'lucide-react'
-import { Card } from '../ui/Card'
+import * as React from 'react';
+import { motion, useInView } from "framer-motion";
+import { Bot, Sparkles, MessageCircle, Zap, Users, Wand2 } from 'lucide-react';
+import { Card } from '../ui/Card';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface Feature {
-  icon: React.ElementType
-  title: string
-  description: string
-  quote: string
-  emoji?: string
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  quote: string;
+  emoji?: string;
 }
 
 const features: Feature[] = [
@@ -17,80 +18,92 @@ const features: Feature[] = [
     title: "AI Chat Assistant",
     description: "Get instant responses and suggestions powered by advanced AI technology.",
     quote: "Bro AI itna smart hai, conversation carry kar leta hai",
-    emoji: "😎"
+    emoji: "😎",
   },
   {
     icon: Sparkles,
     title: "Smart Captions",
     description: "Generate engaging captions for your posts using AI-powered suggestions.",
     quote: "Caption ke liye dimaag nahi lagana padta",
-    emoji: "💕"
+    emoji: "💕",
   },
   {
     icon: MessageCircle,
     title: "Quick Replies",
     description: "Respond faster with intelligent reply suggestions based on context.",
     quote: "Reply me bhi sigma bante hai",
-    emoji: "💪"
+    emoji: "💪",
   },
   {
     icon: Zap,
     title: "Real-time Messaging",
     description: "Connect instantly with friends through seamless real-time messaging.",
     quote: "Messaging smooth like butter",
-    emoji: "⚡"
+    emoji: "⚡",
   },
   {
     icon: Users,
     title: "Community Building",
     description: "Create and join communities with like-minded individuals.",
     quote: "Apni public, apna zone",
-    emoji: "🎯"
+    emoji: "🎯",
   },
   {
     icon: Wand2,
     title: "AI Content Enhancement",
     description: "Enhance your content with AI-powered editing and suggestions.",
     quote: "Content ko next level pe le jaao",
-    emoji: "✨"
-  }
-]
+    emoji: "✨",
+  },
+];
 
 export default function Features() {
-  const ref = React.useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
+  const { theme } = useTheme();
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
 
   const container = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { 
-      opacity: 1, 
+    show: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  }
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const isDarkMode = theme === "dark";
+  const sectionBgClass = isDarkMode ? "bg-black" : "bg-white";
+  const textColorClass = isDarkMode ? "text-white" : "text-gray-900";
+  const cardBgClass = isDarkMode
+    ? "bg-zinc-900/50 border-zinc-800 group-hover:bg-zinc-900/70"
+    : "bg-gray-100 border-gray-300 group-hover:bg-gray-200";
+  const cardTextColor = isDarkMode ? "text-zinc-400" : "text-gray-700";
+  const quoteBgClass = isDarkMode
+    ? "bg-zinc-800/50 group-hover:bg-zinc-800/70 text-white"
+    : "bg-gray-200 group-hover:bg-gray-300 text-gray-900";
 
   return (
-    <div id='features' className="min-h-screen bg-black pt-4">
+    <div id="features" className={`min-h-screen ${sectionBgClass} pt-4`}>
       <section ref={ref} className="w-full py-16 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-center mb-16"
+            className={`text-center mb-16 ${textColorClass}`}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-500 mb-4">
               Features that Pass the Vibe Check
@@ -104,15 +117,17 @@ export default function Features() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {features.map((feature, index) => {
-              const Icon = feature.icon
+              const Icon = feature.icon;
               return (
-                <motion.div 
-                  key={index} 
+                <motion.div
+                  key={index}
                   variants={item}
                   whileHover={{ scale: 1.02 }}
                   className="group"
                 >
-                  <Card className="h-full p-6 bg-zinc-900/50 backdrop-blur border-zinc-800 group-hover:bg-zinc-900/70 group-hover:border-purple-500/50 transition-all duration-300">
+                  <Card
+                    className={`h-full p-6 ${cardBgClass} backdrop-blur border group-hover:border-purple-500/50 transition-all duration-300`}
+                  >
                     <div className="flex items-center gap-3 mb-4">
                       <div className="p-2.5 rounded-xl bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors duration-300">
                         <Icon className="w-6 h-6 text-purple-400" />
@@ -121,12 +136,14 @@ export default function Features() {
                         {feature.title}
                       </h3>
                     </div>
-                    <p className="text-zinc-400 mb-4 text-sm leading-relaxed">
+                    <p className={`mb-4 text-sm leading-relaxed ${cardTextColor}`}>
                       {feature.description}
                     </p>
-                    <div className="p-4 rounded-xl bg-zinc-800/50 text-white backdrop-blur-sm group-hover:bg-zinc-800/70 transition-colors duration-300">
+                    <div
+                      className={`p-4 rounded-xl ${quoteBgClass} backdrop-blur-sm transition-colors duration-300`}
+                    >
                       <p className="flex items-center gap-2 text-sm">
-                        {feature.quote} 
+                        {feature.quote}
                         {feature.emoji && (
                           <span className="animate-bounce">{feature.emoji}</span>
                         )}
@@ -134,11 +151,11 @@ export default function Features() {
                     </div>
                   </Card>
                 </motion.div>
-              )
+              );
             })}
           </motion.div>
         </div>
       </section>
     </div>
-  )
+  );
 }
