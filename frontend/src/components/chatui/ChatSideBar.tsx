@@ -13,7 +13,8 @@ const Sidebar: React.FC = () => {
     isUsersLoading
   } = useChatStore();
   
-  const { onlineUsers } = useAuthStore();
+  const { onlineUsers, authUser } = useAuthStore();
+  const onlineUsersExcludingMe = onlineUsers.filter(id => id !== authUser?._id);
   const [showOnlineOnly, setShowOnlineOnly] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -58,7 +59,7 @@ const Sidebar: React.FC = () => {
             onChange={(e) => setShowOnlineOnly(e.target.checked)}
             className="checkbox checkbox-sm checkbox-success"
           />
-          <span>Online only ({onlineUsers.length - 1} active)</span>
+          <span>Online only ({onlineUsersExcludingMe.length} active)</span>
         </label>
       </div>
 
