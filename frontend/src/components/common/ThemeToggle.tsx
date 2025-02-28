@@ -13,7 +13,7 @@ export default function ThemeToggler() {
       onClick={toggleTheme}
       className="relative group flex justify-center items-center rounded-full border-none bg-transparent shadow-none hover:bg-blue-600/5 md:h-10 md:w-10 mt-4 mr-4"
     >
-      <div className="relative h-6 w-6 ">
+      <div className="relative h-8 w-8 ">
         <Moon 
           className={`absolute h-6 w-6 transition-all duration-300 group-hover:text-blue-500
             ${theme === 'dark' 
