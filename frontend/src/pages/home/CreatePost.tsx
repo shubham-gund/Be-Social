@@ -31,7 +31,7 @@ const CreatePost = () => {
   } = useMutation({
     mutationFn: async ({ text, img }: { text: string; img: string | ArrayBuffer | null }) => {
       try {
-        const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/posts/create", {
+        const res = await fetch("https://be-social-8uqb.onrender.com/api/posts/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

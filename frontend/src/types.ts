@@ -57,5 +57,6 @@ export interface Message {
   receiverId: string;
   text: string;
   createdAt: string;
+  aiSuggestions?: string[];  // Array of AI-suggested replies
 }
 

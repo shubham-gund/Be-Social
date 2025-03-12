@@ -23,7 +23,7 @@ export default function Testimonials() {
   const previous = () => setCurrentTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))
 
   return (
-    <div className={cn("min-h-screen py-20 px-4 md:px-6", theme === "dark" ? "bg-black text-white" : "bg-white text-black")}> 
+    <div id="testimonials" className={cn("min-h-screen py-20 px-4 md:px-6", theme === "dark" ? "bg-black text-white" : "bg-white text-black")}> 
       <div className="max-w-6xl mx-auto">
 
         {/* Stats Section */}

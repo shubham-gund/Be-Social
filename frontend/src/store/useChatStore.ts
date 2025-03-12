@@ -21,6 +21,7 @@ interface ChatState {
   subscribeToMessages: () => void;
   unsubscribeFromMessages: () => void;
   setSelectedUser: (selectedUser: User | null) => void;
+  getAiSuggestions: (messageId: string) => Promise<string[]>;
 }
 
 export const useChatStore = create<ChatState>((set, get) => ({
@@ -34,7 +35,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
     set({ isUsersLoading: true });
     try {
       const res = await axios.get<User[]>(
-        "https://socialmedia-backend-production-5eb9.up.railway.app/api/messages/users",
+        "https://be-social-8uqb.onrender.com/api/messages/users",
         {
           withCredentials: true,
           headers: {
@@ -54,7 +55,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
     set({ isMessagesLoading: true });
     try {
       const res = await axios.get<Message[]>(
-        `https://socialmedia-backend-production-5eb9.up.railway.app/api/messages/${userId}`,
+        `https://be-social-8uqb.onrender.com/api/messages/${userId}`,
         {
           withCredentials: true,
           headers: {
@@ -79,7 +80,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
 
     try {
       const res = await axios.post<Message>(
-        `https://socialmedia-backend-production-5eb9.up.railway.app/api/messages/send/${selectedUser._id}`,
+        `https://be-social-8uqb.onrender.com/api/messages/send/${selectedUser._id}`,
         messageData,
         {
           withCredentials: true,
@@ -103,17 +104,49 @@ export const useChatStore = create<ChatState>((set, get) => ({
     }
   },
 
+  getAiSuggestions: async (messageId: string) => {
+    try {
+      const response = await axios.get<{ suggestions: string[] }>(
+        `https://be-social-8uqb.onrender.com/api/messages/suggestions/${messageId}`,
+        {
+          headers: {
+            Authorization: `${localStorage.getItem("token")}`,
+          }
+        }
+      );
+      return response.data.suggestions;
+    } catch (error) {
+      console.error("Failed to get AI suggestions:", error);
+      return [];
+    }
+  },
+
   subscribeToMessages: () => {
     const socket = useAuthStore.getState().socket;
     if (!socket) return;
 
-    socket.on("newMessage", (newMessage: Message) => {
-      const { selectedUser, messages } = get();
+    socket.on("newMessage", async (newMessage: Message) => {
+      const { selectedUser, messages, getAiSuggestions } = get();
       
       if (selectedUser && 
           (newMessage.senderId === selectedUser._id || 
            newMessage.receiverId === selectedUser._id)) {
-        set({ messages: [...messages, newMessage] });
+        // If the message is from the other user, fetch AI suggestions
+        if (newMessage.senderId === selectedUser._id) {
+          try {
+            const suggestions = await getAiSuggestions(newMessage._id);
+            const messageWithSuggestions = {
+              ...newMessage,
+              aiSuggestions: suggestions
+            };
+            set({ messages: [...messages, messageWithSuggestions] });
+          } catch (error) {
+            console.error("Failed to get AI suggestions:", error);
+            set({ messages: [...messages, newMessage] });
+          }
+        } else {
+          set({ messages: [...messages, newMessage] });
+        }
       }
     });
   },

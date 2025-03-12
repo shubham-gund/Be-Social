@@ -31,7 +31,7 @@ const ChatInterface: React.FC = () => {
 
     try {
       const response = await axios.post<{ message: string }>(
-        "https://socialmedia-backend-production-5eb9.up.railway.app/api/chat",
+        "https://be-social-8uqb.onrender.com/api/chat",
         { messages: [...messages, userMessage] },
         {
           headers: {

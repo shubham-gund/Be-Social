@@ -64,7 +64,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
   checkAuth: async () => {
     try {
-      const res = await axios.get<AuthUser>(`https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/me`, {
+      const res = await axios.get<AuthUser>(`https://be-social-8uqb.onrender.com/api/auth/me`, {
         withCredentials: true,
         headers:{
           Authorization: `${localStorage.getItem("token")}` ,
@@ -87,7 +87,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   signup: async (data) => {
     set({ isSigningUp: true });
     try {
-      const res = await axios.post<AuthUser>(`https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/signup`, data, {
+      const res = await axios.post<AuthUser>(`https://be-social-8uqb.onrender.com/api/auth/signup`, data, {
         withCredentials: true
       });
       set({ 
@@ -106,7 +106,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   login: async (data) => {
     set({ isLoggingIn: true });
     try {
-      const res = await axios.post<AuthUser>(`https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/login`, data, {
+      const res = await axios.post<AuthUser>(`https://be-social-8uqb.onrender.com/api/auth/login`, data, {
         withCredentials: true,
       });
       set({ 
@@ -124,7 +124,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
   logout: async () => {
     try {
-      await axios.post(`https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/logout`, null, {
+      await axios.post(`https://be-social-8uqb.onrender.com/api/auth/logout`, null, {
         withCredentials: true
       });
       set({ authUser: null });
@@ -141,7 +141,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
     get().disconnectSocket();
 
-    const socket = io("https://socialmedia-backend-production-5eb9.up.railway.app", {
+    const socket = io("https://be-social-8uqb.onrender.com", {
       query: { userId: authUser._id },
       reconnection: true,
       reconnectionAttempts: 5,

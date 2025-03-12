@@ -29,7 +29,7 @@ function App() {
     queryKey: ["authUser"],
     queryFn: async () => {
       try {
-        const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/me", {
+        const res = await fetch("https://be-social-8uqb.onrender.com/api/auth/me", {
           headers: {
             Authorization: `${localStorage.getItem("token")}`,
           },

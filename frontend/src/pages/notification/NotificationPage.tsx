@@ -14,7 +14,7 @@ const NotificationPage = () => {
     queryKey: ["notification"],
     queryFn: async () => {
       try {
-        const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/notification",{
+        const res = await fetch("https://be-social-8uqb.onrender.com/api/notification",{
           credentials: 'include',
           headers:{
             Authorization: `${localStorage.getItem("token")}` ,
@@ -33,7 +33,7 @@ const NotificationPage = () => {
   const {mutate:deleteNotifications} = useMutation({
     mutationFn: async () => {
       try {
-        const res = await fetch("https://socialmedia-backend-production-5eb9.up.railway.app/api/notification",{
+        const res = await fetch("https://be-social-8uqb.onrender.com/api/notification",{
           method:"DELETE",
           credentials: 'include',
           headers:{

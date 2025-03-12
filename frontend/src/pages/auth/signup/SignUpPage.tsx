@@ -38,7 +38,7 @@ const SignUpPage = () => {
     mutationFn: async ({ email, username, fullName, password }: FormData) => {
       try {
         const res = await fetch(
-          "https://socialmedia-backend-production-5eb9.up.railway.app/api/auth/signup",
+          "https://be-social-8uqb.onrender.com/api/auth/signup",
           {
             method: "POST",
             headers: {
